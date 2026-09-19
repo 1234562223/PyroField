@@ -1,0 +1,21 @@
+﻿walking the closed-form null curve in three fuel landscapes
+(dchi2 near zero means the curve is still a null direction)
+
+                fuel field          +5%        +10%        +20%        +30%  control +30%
+                   uniform        -0.95        0.31       -0.95        0.17        222404
+   gradient (0.65 - 1.35x)         0.05        0.15       -0.16       -0.06        201066
+        rough random (2:1)         0.02       -0.02        0.03        0.01        203578
+
+  worst dchi2 anywhere on the curve, any landscape: 0.95 (1 sigma = 1)
+  smallest control value (same wind error, no compensation): 201066
+  ratio: 210955x
+
+  The degeneracy is unchanged by fuel heterogeneity, as the algebra requires:
+  a constant rescaling of the whole field is exactly the null direction, and
+  that holds whatever the field looks like.
+
+  Not covered: a fuel field whose *shape* is unknown. That adds unknowns
+  without adding mask observables, so it can only make matters worse.
+
+wrote C:\Users\Administrator\新建文件夹\figures\fig_heterogeneous_fuel.png
+wrote C:\Users\Administrator\新建文件夹\results\heterogeneous_fuel.json

@@ -1,0 +1,37 @@
+﻿target = full  ->  C:\Users\Administrator\新建文件夹\data\wsts_pairs_full
+{'train': 377, 'val': 74, 'test': 156}
+  train 20/377 fires, 48 pairs (18s)
+  train 40/377 fires, 123 pairs (40s)
+  train 60/377 fires, 408 pairs (72s)
+  train 80/377 fires, 478 pairs (93s)
+  train 100/377 fires, 524 pairs (110s)
+  train 120/377 fires, 698 pairs (137s)
+  train 140/377 fires, 859 pairs (159s)
+  train 160/377 fires, 969 pairs (179s)
+  train 180/377 fires, 1023 pairs (199s)
+  train 200/377 fires, 1093 pairs (220s)
+  train 220/377 fires, 1165 pairs (239s)
+  train 240/377 fires, 1243 pairs (258s)
+  train 260/377 fires, 1426 pairs (288s)
+  train 280/377 fires, 1487 pairs (308s)
+  train 300/377 fires, 1613 pairs (338s)
+  train 320/377 fires, 1727 pairs (362s)
+  train 340/377 fires, 1869 pairs (386s)
+  train 360/377 fires, 1981 pairs (407s)
+  train  2008 pairs from 377 fires, 5.03 % positive pixels -> train.npz (370 MB)
+
+  val 20/74 fires, 62 pairs (20s)
+  val 40/74 fires, 152 pairs (40s)
+  val 60/74 fires, 243 pairs (61s)
+  val     275 pairs from  74 fires, 1.05 % positive pixels -> val.npz (51 MB)
+
+  test 20/156 fires, 79 pairs (23s)
+  test 40/156 fires, 137 pairs (46s)
+  test 60/156 fires, 263 pairs (76s)
+  test 80/156 fires, 608 pairs (104s)
+  test 100/156 fires, 833 pairs (135s)
+  test 120/156 fires, 1078 pairs (164s)
+  test 140/156 fires, 1313 pairs (188s)
+  test   1443 pairs from 156 fires, 6.41 % positive pixels -> test.npz (252 MB)
+
+wrote C:\Users\Administrator\新建文件夹\results\wsts_pairs_full.json

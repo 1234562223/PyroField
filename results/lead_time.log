@@ -1,0 +1,55 @@
+﻿
+U = 2.0 m/s
+  T= 2.25 min  burn  0.48%   M CRB(U)=     3359  M+P CRB(U)= 0.001441  M+C CRB(U)=    74.06  M+P+C CRB(U)=0.0008791   (0.9s)
+  T= 4.50 min  burn  0.68%   M CRB(U)=     1405  M+P CRB(U)=0.0008493  M+C CRB(U)=      821  M+P+C CRB(U)=0.0006092   (1.4s)
+  T= 6.75 min  burn  0.91%   M CRB(U)=    790.6  M+P CRB(U)=0.0007192  M+C CRB(U)=    48.91  M+P+C CRB(U)=0.0005583   (2.1s)
+  T= 9.00 min  burn  1.20%   M CRB(U)=    16.07  M+P CRB(U)= 0.000651  M+C CRB(U)=    19.03  M+P+C CRB(U)=0.0005337   (5.0s)
+  T=11.25 min  burn  1.49%   M CRB(U)=    3.679  M+P CRB(U)=0.0006098  M+C CRB(U)=    3.593  M+P+C CRB(U)=0.0005193   (9.3s)
+  T=13.50 min  burn  1.82%   M CRB(U)=    2.571  M+P CRB(U)= 0.000582  M+C CRB(U)=    2.843  M+P+C CRB(U)=0.0005096   (11.2s)
+  T=15.75 min  burn  2.20%   M CRB(U)=    1.765  M+P CRB(U)= 0.000562  M+C CRB(U)=    1.774  M+P+C CRB(U)=0.0005027   (13.0s)
+  T=18.00 min  burn  2.63%   M CRB(U)=    1.158  M+P CRB(U)= 0.000547  M+C CRB(U)=    1.165  M+P+C CRB(U)=0.0004973   (14.8s)
+  T=20.25 min  burn  3.04%   M CRB(U)=   0.7438  M+P CRB(U)=0.0005355  M+C CRB(U)=   0.7578  M+P+C CRB(U)=0.0004931   (16.9s)
+  T=22.50 min  burn  3.56%   M CRB(U)=   0.4629  M+P CRB(U)=0.0005263  M+C CRB(U)=   0.4632  M+P+C CRB(U)=0.0004896   (18.8s)
+  T=24.75 min  burn  4.11%   M CRB(U)=   0.3007  M+P CRB(U)=0.0005189  M+C CRB(U)=   0.3006  M+P+C CRB(U)=0.0004867   (20.5s)
+  T=27.00 min  burn  4.62%   M CRB(U)=    0.201  M+P CRB(U)=0.0005127  M+C CRB(U)=   0.2017  M+P+C CRB(U)=0.0004843   (22.4s)
+
+U = 4.0 m/s
+  T= 2.25 min  burn  0.58%   M CRB(U)=    43.62  M+P CRB(U)=0.0006584  M+C CRB(U)=    68.42  M+P+C CRB(U)=0.0004265   (1.7s)
+  T= 4.50 min  burn  0.90%   M CRB(U)=    41.75  M+P CRB(U)=0.0005058  M+C CRB(U)=     90.6  M+P+C CRB(U)=0.0003746   (3.6s)
+  T= 6.75 min  burn  1.27%   M CRB(U)=    377.4  M+P CRB(U)= 0.000441  M+C CRB(U)=    304.8  M+P+C CRB(U)=0.0003539   (5.5s)
+  T= 9.00 min  burn  1.70%   M CRB(U)=    6.922  M+P CRB(U)=0.0004021  M+C CRB(U)=    6.636  M+P+C CRB(U)=0.0003416   (7.5s)
+  T=11.25 min  burn  2.20%   M CRB(U)=    1.544  M+P CRB(U)=0.0003748  M+C CRB(U)=    1.535  M+P+C CRB(U)=0.0003326   (9.3s)
+  T=13.50 min  burn  2.72%   M CRB(U)=   0.6569  M+P CRB(U)=0.0003537  M+C CRB(U)=   0.6658  M+P+C CRB(U)=0.0003251   (11.2s)
+  T=15.75 min  burn  3.40%   M CRB(U)=   0.3147  M+P CRB(U)=0.0003367  M+C CRB(U)=   0.3143  M+P+C CRB(U)=0.0003181   (13.0s)
+  T=18.00 min  burn  4.11%   M CRB(U)=   0.1627  M+P CRB(U)=0.0003224  M+C CRB(U)=   0.1616  M+P+C CRB(U)=0.0003114   (14.9s)
+  T=20.25 min  burn  4.84%   M CRB(U)=    0.088  M+P CRB(U)=0.0003087  M+C CRB(U)=  0.08687  M+P+C CRB(U)=0.0003036   (16.8s)
+  T=22.50 min  burn  5.62%   M CRB(U)=  0.04776  M+P CRB(U)=0.0002932  M+C CRB(U)=  0.04749  M+P+C CRB(U)=0.0002922   (18.6s)
+  T=24.75 min  burn  6.49%   M CRB(U)=  0.03159  M+P CRB(U)=0.0002832  M+C CRB(U)=   0.0315  M+P+C CRB(U)=0.0002832   (20.4s)
+  T=27.00 min  burn  7.45%   M CRB(U)=  0.02217  M+P CRB(U)=0.0002776  M+C CRB(U)=  0.02212  M+P+C CRB(U)=0.0002775   (22.4s)
+
+U = 6.0 m/s
+  T= 2.25 min  burn  0.67%   M CRB(U)=    965.7  M+P CRB(U)= 0.001658  M+C CRB(U)=    736.1  M+P+C CRB(U)= 0.001656   (1.7s)
+  T= 4.50 min  burn  1.18%   M CRB(U)=    7.177  M+P CRB(U)= 0.001125  M+C CRB(U)=    7.124  M+P+C CRB(U)= 0.001121   (3.6s)
+  T= 6.75 min  burn  1.75%   M CRB(U)=    3.512  M+P CRB(U)=0.0009016  M+C CRB(U)=    3.583  M+P+C CRB(U)=0.0008963   (5.5s)
+  T= 9.00 min  burn  2.45%   M CRB(U)=     1.01  M+P CRB(U)=0.0007712  M+C CRB(U)=    1.009  M+P+C CRB(U)=0.0007652   (7.5s)
+  T=11.25 min  burn  3.18%   M CRB(U)=   0.2601  M+P CRB(U)=0.0006835  M+C CRB(U)=   0.2601  M+P+C CRB(U)=0.0006772   (9.3s)
+  T=13.50 min  burn  4.04%   M CRB(U)=    0.106  M+P CRB(U)=0.0006266  M+C CRB(U)=   0.1052  M+P+C CRB(U)=0.0006206   (11.2s)
+  T=15.75 min  burn  5.00%   M CRB(U)=  0.04308  M+P CRB(U)= 0.000589  M+C CRB(U)=  0.04202  M+P+C CRB(U)=0.0005832   (13.0s)
+  T=18.00 min  burn  6.10%   M CRB(U)=   0.0183  M+P CRB(U)=0.0005562  M+C CRB(U)=   0.0181  M+P+C CRB(U)=0.0005516   (15.0s)
+  T=20.25 min  burn  7.28%   M CRB(U)= 0.009445  M+P CRB(U)= 0.000536  M+C CRB(U)= 0.009415  M+P+C CRB(U)=0.0005327   (16.9s)
+  T=22.50 min  burn  8.54%   M CRB(U)= 0.005629  M+P CRB(U)=0.0005172  M+C CRB(U)= 0.005623  M+P+C CRB(U)=0.0005149   (18.5s)
+  T=24.75 min  burn  9.95%   M CRB(U)=  0.00382  M+P CRB(U)=0.0004985  M+C CRB(U)= 0.003818  M+P+C CRB(U)=0.0004971   (20.6s)
+  T=27.00 min  burn 11.37%   M CRB(U)= 0.002921  M+P CRB(U)=0.0004808  M+C CRB(U)=  0.00292  M+P+C CRB(U)=  0.00048   (22.4s)
+
+total 427s
+
+==============================================================================
+TIME UNTIL WIND SPEED IS DETERMINED TO WITHIN 10 %
+==============================================================================
+    wind             M         M+P         M+C       M+P+C   lead gained
+   2.0         never     2.2 min       never     2.2 min     >24.8 min
+   4.0      19.8 min     2.2 min    19.7 min     2.2 min      17.5 min
+   6.0      13.6 min     2.2 min    13.6 min     2.2 min      11.4 min
+
+wrote C:\Users\Administrator\新建文件夹\figures\fig_lead_time.png
+wrote C:\Users\Administrator\新建文件夹\results\lead_time.json

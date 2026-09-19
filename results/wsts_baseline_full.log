@@ -1,0 +1,120 @@
+﻿device=cuda  train 2008  val 275  test 1443   positives 6.41 %
+
+==============================================================================
+[0] the control that has to come first
+==============================================================================
+    persistence (ring around today's fire): test AP = 0.0646
+    a random predictor would score 0.0641
+
+==============================================================================
+[1] one architecture, 2 seeds per arm, channels ablated
+==============================================================================
+
+  fire  (seed 0)
+      epoch  15/30  val AP 0.9337  best 0.9356  (169s)
+      epoch  30/30  val AP 0.9359  best 0.9361  (289s)
+    params 486,321   val AP 0.9361   test AP 0.9861
+
+  fire  (seed 1)
+      epoch  15/30  val AP 0.9351  best 0.9358  (135s)
+      epoch  30/30  val AP 0.9350  best 0.9366  (278s)
+    params 486,321   val AP 0.9366   test AP 0.9860
+
+  fire + wind  (seed 0)
+      epoch  15/30  val AP 0.9327  best 0.9344  (147s)
+      epoch  30/30  val AP 0.9326  best 0.9344  (290s)
+    params 486,321   val AP 0.9344   test AP 0.9848
+
+  fire + wind  (seed 1)
+      epoch  15/30  val AP 0.9341  best 0.9353  (141s)
+      epoch  30/30  val AP 0.9343  best 0.9353  (285s)
+    params 486,321   val AP 0.9353   test AP 0.9856
+
+  fire + weather  (seed 0)
+      epoch  15/30  val AP 0.9375  best 0.9389  (144s)
+      epoch  30/30  val AP 0.9392  best 0.9396  (294s)
+    params 486,321   val AP 0.9396   test AP 0.9865
+
+  fire + weather  (seed 1)
+      epoch  15/30  val AP 0.9383  best 0.9389  (150s)
+      epoch  30/30  val AP 0.9395  best 0.9402  (290s)
+    params 486,321   val AP 0.9402   test AP 0.9866
+
+  fire + static  (seed 0)
+      epoch  15/30  val AP 0.9415  best 0.9442  (143s)
+      epoch  30/30  val AP 0.9423  best 0.9453  (288s)
+    params 486,321   val AP 0.9453   test AP 0.9868
+
+  fire + static  (seed 1)
+      epoch  15/30  val AP 0.9468  best 0.9468  (147s)
+      epoch  30/30  val AP 0.9463  best 0.9494  (297s)
+    params 486,321   val AP 0.9494   test AP 0.9863
+
+  fire + VIIRS  (seed 0)
+      epoch  15/30  val AP 0.9429  best 0.9443  (142s)
+      epoch  30/30  val AP 0.9456  best 0.9456  (278s)
+    params 486,321   val AP 0.9456   test AP 0.9921
+
+  fire + VIIRS  (seed 1)
+      epoch  15/30  val AP 0.9430  best 0.9436  (136s)
+      epoch  30/30  val AP 0.9454  best 0.9460  (279s)
+    params 486,321   val AP 0.9460   test AP 0.9923
+
+  all minus wind  (seed 0)
+      epoch  15/30  val AP 0.9539  best 0.9539  (117s)
+      epoch  30/30  val AP 0.9531  best 0.9555  (238s)
+    params 486,321   val AP 0.9555   test AP 0.9922
+
+  all minus wind  (seed 1)
+      epoch  15/30  val AP 0.9501  best 0.9520  (127s)
+      epoch  30/30  val AP 0.9523  best 0.9546  (263s)
+    params 486,321   val AP 0.9546   test AP 0.9917
+
+  all  (seed 0)
+      epoch  15/30  val AP 0.9493  best 0.9497  (139s)
+      epoch  30/30  val AP 0.9496  best 0.9520  (279s)
+    params 486,321   val AP 0.9520   test AP 0.9916
+
+  all  (seed 1)
+      epoch  15/30  val AP 0.9512  best 0.9554  (143s)
+      epoch  30/30  val AP 0.9556  best 0.9563  (284s)
+    params 486,321   val AP 0.9563   test AP 0.9919
+
+==============================================================================
+[2] what each group of channels is worth
+==============================================================================
+
+  arm                 params            test AP   vs fire-only
+  persistence              -       0.0646                0.07x
+  fire               486,321       0.9861 +/- 0.0000          1.00x
+  fire + wind        486,321       0.9852 +/- 0.0004          1.00x
+  fire + weather     486,321       0.9865 +/- 0.0000          1.00x
+  fire + static      486,321       0.9866 +/- 0.0003          1.00x
+  fire + VIIRS       486,321       0.9922 +/- 0.0001          1.01x
+  all minus wind     486,321       0.9919 +/- 0.0002          1.01x
+  all                486,321       0.9918 +/- 0.0001          1.01x
+
+==============================================================================
+[3] does the wind matter where the wind is strong?
+==============================================================================
+
+         wind on the day   pairs             fire     fire + wind  all minus wind             all
+               < 2.9 m/s     475           0.9881          0.9872          0.9932          0.9926
+               2.9 - 3.8     481           0.9868          0.9856          0.9929          0.9923
+              >= 3.8 m/s     487           0.9827          0.9810          0.9898          0.9895
+
+==============================================================================
+[4] so what are the wind channels worth?
+==============================================================================
+    all channels                  0.9918
+    all channels except the wind  0.9919   (-0 %)
+    fire mask + raw VIIRS bands   0.9922   (1.01x the fire mask alone)
+    fire mask alone               0.9861
+
+    Removing the wind from the full input changes the score by -0 %.
+    The near-doubling that the full input buys over the fire mask is bought
+    by the raw VIIRS bands, which carry the fire's thermal signature directly
+    rather than through a binary detection flag. It is not the weather.
+
+wrote C:\Users\Administrator\新建文件夹\results\wsts_baseline_full.json
+wrote C:\Users\Administrator\新建文件夹\figures\fig_wsts_baseline_full.png

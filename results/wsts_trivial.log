@@ -1,0 +1,19 @@
+﻿==============================================================================
+what a rule with no model and no channels scores on each target
+==============================================================================
+
+                              target  positives   copy today      ring    chance
+       new-fire (used in section 15)      0.36%       0.0036    0.0755    0.0036
+     published (whole next-day fire)      6.41%       0.9474    0.0646    0.0641
+
+wrote C:\Users\Administrator\新建文件夹\results\wsts_trivial.json
+
+  On the published target, copying today's fire unchanged already scores
+  0.9474. The best network in section 15 scores 0.9922, so everything a model
+  contributes -- every channel, every parameter -- is worth 0.045 of AP on top of
+  a rule that ignores the data.
+
+  On the spread-only target the same rule scores 0.0036, which is chance
+  (0.0036) by construction, and the best network scores 0.3046. That is the
+  whole reason section 15 measures channels there: the published framing
+  leaves them fighting over the last few percent of a saturated metric.

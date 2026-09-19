@@ -1,0 +1,17 @@
+﻿probing the service
+  feature categories present:
+    On foot                                             1
+    Prescribed Fire                                   941
+    Wildfire Daily Fire Perimeter                  19,224
+    Wildfire Final Fire Perimeter                  20,465
+
+  matching records: 2,441
+  where: (poly_FeatureCategory = 'Wildfire Final Fire Perimeter') AND poly_GISAcres >= 300.0 AND poly_GISAcres <= 200000.0
+
+    fetched 250 ...
+    fetched 500 ...
+    fetched 750 ...
+    fetched 1,000 ...
+
+  saved 900 perimeters to C:\Users\Administrator\新建文件夹\data\wfigs_perimeters.geojson  (159.7 MB)
+  acres: min 2,967  median 9,630  max 196,368

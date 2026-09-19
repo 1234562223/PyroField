@@ -1,0 +1,23 @@
+﻿
+==============================================================================
+[2] the two failure modes respond differently
+==============================================================================
+  arm                                      median         failures > 5 %
+  state mask + plume|test_id       0.7 ->   0.4 %           16 ->     4 %
+  state mask + plume|test_ood      0.8 ->   0.8 %           36 ->    20 %
+  state mask only|test_id         26.8 ->  19.1 %          100 ->    83 %
+
+  With the plume, restarting removes 75 % of the in-distribution failures and 44 % of the
+  out-of-distribution ones, because those were the optimiser losing an answer
+  the data contained. The median reaches 0.4 %.
+
+  With masks alone it moves the median from 26.8 % to 19.1 % and the p90 from 82 % to 41 %, and leaves 83 % of cases failing.
+  8.6 % of that is the floor: the component of the starting
+  error along the null direction, which no optimiser can see. The improvement
+  it does make is the other five sixths of the perturbation being cleaned up,
+  and it does not finish the job -- with masks only the misfit surface is
+  nearly flat, so ranking three starts by misfit is a weak signal.
+
+  The comparison that matters: 0.4 % with the plume against 19.1 % without, a factor of 46,
+  with the mask-only arm unable to go below 8.6 % at any number of starts.
+wrote C:\Users\Administrator\新建文件夹\figures\fig_fusion_multistart.png

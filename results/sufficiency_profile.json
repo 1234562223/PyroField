@@ -1,0 +1,441 @@
+{
+  "probe": 0.3,
+  "dchi2_flat": 4.0,
+  "scenes": {
+    "flat, 3 m/s": {
+      "masks": {
+        "R0": {
+          "determined": false,
+          "dchi2": {
+            "0.3": 0.0
+          },
+          "sigma_rel": null,
+          "sigma_abs": null
+        },
+        "U": {
+          "determined": false,
+          "dchi2": {
+            "0.3": 0.0
+          },
+          "sigma_rel": null,
+          "sigma_abs": null
+        },
+        "theta_w": {
+          "determined": true,
+          "dchi2": {
+            "0.3": 108106.046875,
+            "0.1": 15662.125
+          },
+          "sigma_rel": null,
+          "sigma_abs": 0.0457822665467478
+        },
+        "lb_k": {
+          "determined": false,
+          "dchi2": {
+            "0.3": 0.0
+          },
+          "sigma_rel": null,
+          "sigma_abs": null
+        },
+        "w_buoy": {
+          "determined": false,
+          "dchi2": {
+            "0.3": 0.0
+          },
+          "sigma_rel": null,
+          "sigma_abs": null
+        },
+        "Q": {
+          "determined": false,
+          "dchi2": {
+            "0.3": 0.0
+          },
+          "sigma_rel": null,
+          "sigma_abs": null
+        }
+      },
+      "masks + air quality": {
+        "R0": {
+          "determined": false,
+          "dchi2": {
+            "0.3": 0.0
+          },
+          "sigma_rel": null,
+          "sigma_abs": null
+        },
+        "U": {
+          "determined": false,
+          "dchi2": {
+            "0.3": 0.0
+          },
+          "sigma_rel": null,
+          "sigma_abs": null
+        },
+        "theta_w": {
+          "determined": true,
+          "dchi2": {
+            "0.3": 118480.40234375,
+            "0.1": 18370.95703125
+          },
+          "sigma_rel": null,
+          "sigma_abs": 0.04227238406434531
+        },
+        "lb_k": {
+          "determined": false,
+          "dchi2": {
+            "0.3": 0.0
+          },
+          "sigma_rel": null,
+          "sigma_abs": null
+        },
+        "w_buoy": {
+          "determined": false,
+          "dchi2": {
+            "0.3": 0.0
+          },
+          "sigma_rel": null,
+          "sigma_abs": null
+        },
+        "Q": {
+          "determined": false,
+          "dchi2": {
+            "0.3": 0.0
+          },
+          "sigma_rel": null,
+          "sigma_abs": null
+        }
+      },
+      "masks + plume": {
+        "R0": {
+          "determined": true,
+          "dchi2": {
+            "0.3": 5395.8984375,
+            "0.1": 812.4140625
+          },
+          "sigma_rel": 0.0033494761458925776,
+          "sigma_abs": null
+        },
+        "U": {
+          "determined": true,
+          "dchi2": {
+            "0.3": 2969.66015625,
+            "0.1": 561.3203125
+          },
+          "sigma_rel": 0.004030953176828056,
+          "sigma_abs": null
+        },
+        "theta_w": {
+          "determined": true,
+          "dchi2": {
+            "0.3": 124590.1953125,
+            "0.1": 16798.8515625
+          },
+          "sigma_rel": null,
+          "sigma_abs": 0.044206164566503274
+        },
+        "lb_k": {
+          "determined": true,
+          "dchi2": {
+            "0.3": 2086.7578125,
+            "0.1": 358.1796875
+          },
+          "sigma_rel": 0.005048737982945261,
+          "sigma_abs": null
+        },
+        "w_buoy": {
+          "determined": true,
+          "dchi2": {
+            "0.3": 2911.84765625,
+            "0.1": 579.859375
+          },
+          "sigma_rel": 0.00396586296646076,
+          "sigma_abs": null
+        },
+        "Q": {
+          "determined": true,
+          "dchi2": {
+            "0.3": 2779.0625,
+            "0.1": 432.6640625
+          },
+          "sigma_rel": 0.004592606600999931,
+          "sigma_abs": null
+        }
+      },
+      "all three": {
+        "R0": {
+          "determined": true,
+          "dchi2": {
+            "0.3": 5410.390625,
+            "0.1": 814.31640625
+          },
+          "sigma_rel": 0.003345554922076207,
+          "sigma_abs": null
+        },
+        "U": {
+          "determined": true,
+          "dchi2": {
+            "0.3": 2977.55859375,
+            "0.1": 562.9765625
+          },
+          "sigma_rel": 0.004025007448279942,
+          "sigma_abs": null
+        },
+        "theta_w": {
+          "determined": true,
+          "dchi2": {
+            "0.3": 140625.6796875,
+            "0.1": 22999.75
+          },
+          "sigma_rel": null,
+          "sigma_abs": 0.037779923545146255
+        },
+        "lb_k": {
+          "determined": true,
+          "dchi2": {
+            "0.3": 2100.07421875,
+            "0.1": 359.046875
+          },
+          "sigma_rel": 0.005042621962256236,
+          "sigma_abs": null
+        },
+        "w_buoy": {
+          "determined": true,
+          "dchi2": {
+            "0.3": 2918.86328125,
+            "0.1": 579.94140625
+          },
+          "sigma_rel": 0.003965581920461548,
+          "sigma_abs": null
+        },
+        "Q": {
+          "determined": true,
+          "dchi2": {
+            "0.3": 2792.66015625,
+            "0.1": 451.5
+          },
+          "sigma_rel": 0.004495570249910406,
+          "sigma_abs": null
+        }
+      }
+    },
+    "20 deg slope, 3 m/s": {
+      "masks": {
+        "R0": {
+          "determined": false,
+          "dchi2": {
+            "0.3": 0.01171875
+          },
+          "sigma_rel": null,
+          "sigma_abs": null
+        },
+        "U": {
+          "determined": false,
+          "dchi2": {
+            "0.3": 0.0
+          },
+          "sigma_rel": null,
+          "sigma_abs": null
+        },
+        "theta_w": {
+          "determined": false,
+          "dchi2": {
+            "0.3": 0.0
+          },
+          "sigma_rel": null,
+          "sigma_abs": null
+        },
+        "lb_k": {
+          "determined": false,
+          "dchi2": {
+            "0.3": 0.0
+          },
+          "sigma_rel": null,
+          "sigma_abs": null
+        },
+        "w_buoy": {
+          "determined": false,
+          "dchi2": {
+            "0.3": 0.0
+          },
+          "sigma_rel": null,
+          "sigma_abs": null
+        },
+        "Q": {
+          "determined": false,
+          "dchi2": {
+            "0.3": 0.0
+          },
+          "sigma_rel": null,
+          "sigma_abs": null
+        }
+      },
+      "masks + air quality": {
+        "R0": {
+          "determined": true,
+          "dchi2": {
+            "0.3": 1055.65625,
+            "0.1": 224.58203125
+          },
+          "sigma_rel": 0.006380189198923092,
+          "sigma_abs": null
+        },
+        "U": {
+          "determined": true,
+          "dchi2": {
+            "0.3": 564.33984375,
+            "0.1": 126.0703125
+          },
+          "sigma_rel": 0.008524667342787819,
+          "sigma_abs": null
+        },
+        "theta_w": {
+          "determined": true,
+          "dchi2": {
+            "0.3": 7020.35546875,
+            "0.1": 606.08203125
+          },
+          "sigma_rel": null,
+          "sigma_abs": 0.23273244290252307
+        },
+        "lb_k": {
+          "determined": true,
+          "dchi2": {
+            "0.3": 599.8203125,
+            "0.1": 133.4765625
+          },
+          "sigma_rel": 0.008283796235042296,
+          "sigma_abs": null
+        },
+        "w_buoy": {
+          "determined": false,
+          "dchi2": {
+            "0.3": 0.0
+          },
+          "sigma_rel": null,
+          "sigma_abs": null
+        },
+        "Q": {
+          "determined": true,
+          "dchi2": {
+            "0.3": 382.04296875,
+            "0.1": 57.5625
+          },
+          "sigma_rel": 0.01264154606287889,
+          "sigma_abs": null
+        }
+      },
+      "masks + plume": {
+        "R0": {
+          "determined": true,
+          "dchi2": {
+            "0.3": 6373.3125,
+            "0.1": 1149.8046875
+          },
+          "sigma_rel": 0.002814736520900121,
+          "sigma_abs": null
+        },
+        "U": {
+          "determined": true,
+          "dchi2": {
+            "0.3": 2932.3203125,
+            "0.1": 698.9296875
+          },
+          "sigma_rel": 0.0036116497528139698,
+          "sigma_abs": null
+        },
+        "theta_w": {
+          "determined": true,
+          "dchi2": {
+            "0.3": 40371.46875,
+            "0.1": 3098.0546875
+          },
+          "sigma_rel": null,
+          "sigma_abs": 0.10293856092274686
+        },
+        "lb_k": {
+          "determined": true,
+          "dchi2": {
+            "0.3": 2510.8125,
+            "0.1": 424.4453125
+          },
+          "sigma_rel": 0.0046369603375089755,
+          "sigma_abs": null
+        },
+        "w_buoy": {
+          "determined": true,
+          "dchi2": {
+            "0.3": 2326.69140625,
+            "0.1": 542.21875
+          },
+          "sigma_rel": 0.004101485032023033,
+          "sigma_abs": null
+        },
+        "Q": {
+          "determined": true,
+          "dchi2": {
+            "0.3": 2325.95703125,
+            "0.1": 369.625
+          },
+          "sigma_rel": 0.004969761668725048,
+          "sigma_abs": null
+        }
+      },
+      "all three": {
+        "R0": {
+          "determined": true,
+          "dchi2": {
+            "0.3": 7101.25,
+            "0.1": 1351.21484375
+          },
+          "sigma_rel": 0.0025962124998840648,
+          "sigma_abs": null
+        },
+        "U": {
+          "determined": true,
+          "dchi2": {
+            "0.3": 3475.5625,
+            "0.1": 822.828125
+          },
+          "sigma_rel": 0.0033281771088082847,
+          "sigma_abs": null
+        },
+        "theta_w": {
+          "determined": true,
+          "dchi2": {
+            "0.3": 53469.96875,
+            "0.1": 3710.56640625
+          },
+          "sigma_rel": null,
+          "sigma_abs": 0.09405947020511694
+        },
+        "lb_k": {
+          "determined": true,
+          "dchi2": {
+            "0.3": 3032.5859375,
+            "0.1": 511.171875
+          },
+          "sigma_rel": 0.004224463221483659,
+          "sigma_abs": null
+        },
+        "w_buoy": {
+          "determined": true,
+          "dchi2": {
+            "0.3": 2805.9609375,
+            "0.1": 663.42578125
+          },
+          "sigma_rel": 0.003707207420341446,
+          "sigma_abs": null
+        },
+        "Q": {
+          "determined": true,
+          "dchi2": {
+            "0.3": 2825.7265625,
+            "0.1": 530.94921875
+          },
+          "sigma_rel": 0.004144873619592125,
+          "sigma_abs": null
+        }
+      }
+    }
+  }
+}

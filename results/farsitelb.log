@@ -1,0 +1,58 @@
+﻿==============================================================================
+[0] FARSITE's shape law and where it stops responding
+==============================================================================
+    LB = 0.936 exp(0.2566 U_mih) + 0.461 exp(-0.1548 U_mih) - 0.397, capped at 8.0
+    the cap is reached at U = 3.80 m/s (8.49 mi/h)
+
+      U (m/s)  U (mi/h)  LB uncapped  LB as used    dLB/dU
+         0.50      1.12        1.238       1.238     0.582
+         1.00      2.24        1.591       1.591     0.841
+         1.50      3.36        2.091       2.091     1.176
+         2.00      4.47        2.784       2.784     1.614
+         2.50      5.59        3.728       3.728     2.189
+         3.00      6.71        5.004       5.004     2.950
+         3.50      7.83        6.719       6.719     3.959
+         3.79      8.48        7.970       7.970     2.614
+         4.00      8.95        9.017       8.000     0.000   <- clamped
+         5.00     11.18       16.193       8.000     0.000   <- clamped
+         6.00     13.42       28.968       8.000     0.000   <- clamped
+         8.00     17.90       92.006       8.000     0.000   <- clamped
+
+==============================================================================
+[1] Fisher information about the wind from masks, under Anderson's law
+==============================================================================
+    'law exact'   : the LB relation is taken as known (FARSITE's assumption)
+    'law uncertain': its fuel-to-fuel scale is a free parameter
+
+         U      LB |  law exact: CRB(R0)     CRB(U) |  law uncertain: CRB(U)
+      1.50   2.091 |           0.0013178  0.0030157 |                0.40612
+      2.50   3.728 |           0.0015597  0.0023763 |                0.11795
+      3.00   5.004 |           0.0016567  0.0022177 |                0.06561
+      3.50   6.719 |           0.0017762   0.002151 |               0.035011
+      4.00   8.000 |             0.01293   0.014775 |               0.014775   <- LB clamped
+      5.00   8.000 |           0.0037004  0.0037997 |              0.0037997   <- LB clamped
+      7.00   8.000 |          0.00030619   0.000305 |               0.000305   <- LB clamped
+    (75s)
+
+==============================================================================
+[2] profile likelihood: does the data actually resist a wrong wind?
+==============================================================================
+    U = 3.0 m/s (below the cap), law exact     : max dchi2 over +/-45% =    45427.0   sigma(U) =    0.22 %
+    U = 3.0 m/s (below the cap), law uncertain : max dchi2 over +/-45% =        0.5   sigma(U) >   56.83 %
+    U = 5.0 m/s (above the cap), law exact     : max dchi2 over +/-45% =    15455.3   sigma(U) =    9.63 %
+    U = 5.0 m/s (above the cap), law uncertain : max dchi2 over +/-45% =        6.8   sigma(U) =   12.31 %
+
+==============================================================================
+[3] the 2x2
+==============================================================================
+                              U = 3 m/s (LB responds)     U = 5 m/s (LB clamped)
+    shape law exact                            0.22 %                     9.63 %
+    shape law uncertain                      >56.83 %                    12.31 %
+
+    Three of the four cells are degenerate. The one that is not requires both
+    a wind below 3.8 m/s and Anderson's relation taken as exact for the fuel
+    in front of you -- an assumption FARSITE makes for convenience and that
+    Anderson's own group-specific relations do not support.
+
+wrote C:\Users\Administrator\新建文件夹\figures\fig_farsite_lb.png
+wrote C:\Users\Administrator\新建文件夹\results\farsite_lb.json

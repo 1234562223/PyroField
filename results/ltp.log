@@ -1,0 +1,25 @@
+﻿  T= 2.25 min  M     sigma(U) =   223.61%   d(+10%)=0.00  d(+25%)=0.00  d(+50%)=0.00   [16s]
+  T= 2.25 min  M+P   sigma(U) =     0.21%   d(+10%)=4898.28  d(+25%)=14812.90  d(+50%)=18263.22   [55s]
+  T= 6.75 min  M     sigma(U) =   223.61%   d(+10%)=0.00  d(+25%)=0.00  d(+50%)=0.00   [133s]
+  T= 6.75 min  M+P   sigma(U) =     0.13%   d(+10%)=9759.21  d(+25%)=36334.48  d(+50%)=49542.24   [256s]
+  T=11.25 min  M     sigma(U) =   223.61%   d(+10%)=0.02  d(+25%)=-0.01  d(+50%)=0.02   [381s]
+  T=11.25 min  M+P   sigma(U) =     0.12%   d(+10%)=11190.62  d(+25%)=44684.78  d(+50%)=75564.18   [572s]
+  T=15.75 min  M     sigma(U) =   223.61%   d(+10%)=-0.05  d(+25%)=-0.04  d(+50%)=0.01   [758s]
+  T=15.75 min  M+P   sigma(U) =     0.11%   d(+10%)=12886.30  d(+25%)=55053.72  d(+50%)=134785.86   [1018s]
+  T=20.25 min  M     sigma(U) =   223.61%   d(+10%)=-0.09  d(+25%)=-0.19  d(+50%)=-0.15   [1268s]
+  T=20.25 min  M+P   sigma(U) =     0.10%   d(+10%)=14779.59  d(+25%)=68102.91  d(+50%)=177227.14   [1610s]
+  T=24.75 min  M     sigma(U) =   223.61%   d(+10%)=-0.11  d(+25%)=-0.36  d(+50%)=-0.62   [1975s]
+  T=24.75 min  M+P   sigma(U) =     0.09%   d(+10%)=16716.09  d(+25%)=83199.58  d(+50%)=224526.81   [2395s]
+
+total 2395s
+
+======================================================================
+PROFILE-BASED TIME UNTIL WIND SPEED IS KNOWN TO 10 %
+======================================================================
+  M    : never within the scan
+  M+P  : 2.2 min
+
+  lead time gained by reading the plume: > 22.5 min (masks never get there inside 24.8 min)
+
+wrote C:\Users\Administrator\新建文件夹\figures\fig_lead_time_profile.png
+wrote C:\Users\Administrator\新建文件夹\results\lead_time_profile.json

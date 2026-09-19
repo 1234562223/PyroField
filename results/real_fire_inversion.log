@@ -1,0 +1,51 @@
+﻿
+==============================================================================
+[1] does the model fit a real burn at all?  (23 fires)
+==============================================================================
+    IoU of the fitted final front with the observed one: median 0.376, p25 0.227, p75 0.462
+    for scale, section 3 found the best area-matched ellipse reaches a median
+    IoU of 0.705 on real final perimeters, so this is the ceiling to beat.
+
+==============================================================================
+[2] does the answer depend on where the fit started?
+==============================================================================
+    Each fire was fitted three times, from 1.5, 3.0 and 6.0 m/s -- a 4x span.
+    ratio of largest to smallest fitted wind, per fire: median 25.45x, p90 29.74x
+    ratio of largest to smallest final misfit:          median 1.9206x, p90 2.7856x
+    fires where the three fits stay more than 1.5x apart: 91 %
+
+    If the burn determined the wind, the three fits would converge on one
+    answer and only one of them would fit well. A spread in the answers with
+    no spread in the misfit is the degeneracy, on real fires.
+
+==============================================================================
+[3] is the recovered wind right?
+==============================================================================
+    wind speed, relative error against GRIDMET: median 94 %, p25 88 %, p75 95 %
+    wind bearing, absolute error: median 29 deg, p25 15, p75 56
+    fires whose bearing lands within 45 deg: 65 %; a random bearing would give 25 %
+
+==============================================================================
+[4] does the guard know it cannot have the wind speed?
+==============================================================================
+    wind speed called determined: 0 % of fires
+    wind bearing called determined: 26 %
+
+    Sections 1 and 13 say a burn mask cannot give the speed and can give
+    the bearing on flat ground. The guard is applied to real fires with no
+    knowledge of either, and its verdicts are what they are.
+
+==============================================================================
+[5] separating 'not identifiable' from 'the model does not fit'
+==============================================================================
+    On real fires those two explanations are confounded, and the honest way to
+    look at it is to ask whether the fires the model *does* fit behave any
+    differently. If the wind pins down where the fit is good, the failure is
+    misspecification; if it does not, misspecification is not the explanation.
+
+           fit quality   fires   median U spread   median U error   bearing err
+            IoU < 0.38      11             26.6x              93 %           29d
+           IoU >= 0.38      12             23.8x              94 %           35d
+
+wrote C:\Users\Administrator\新建文件夹\results\real_fire_inversion.json
+wrote C:\Users\Administrator\新建文件夹\figures\fig_real_fire_inversion.png

@@ -1,0 +1,49 @@
+﻿==============================================================================
+[1] 3 starts, screened cheaply and the best one refined
+==============================================================================
+
+  state mask + plume, test_id
+      test_id M+P 5/25  (571s, eta 2286s)
+      test_id M+P 10/25  (1102s, eta 1654s)
+      test_id M+P 15/25  (1656s, eta 1104s)
+      test_id M+P 20/25  (2222s, eta 556s)
+      test_id M+P 25/25  (2761s, eta 0s)
+    median      0.7 % ->    0.4 %
+    p90        28.1 % ->    1.1 %
+    failures     16 % ->      4 %   (start 1 kept in 32 % of cases)
+
+  state mask + plume, test_ood
+      test_ood M+P 5/25  (583s, eta 2334s)
+      test_ood M+P 10/25  (1149s, eta 1723s)
+      test_ood M+P 15/25  (1698s, eta 1132s)
+      test_ood M+P 20/25  (2255s, eta 564s)
+      test_ood M+P 25/25  (2827s, eta 0s)
+    median      0.8 % ->    0.8 %
+    p90        31.3 % ->   14.7 %
+    failures     36 % ->     20 %   (start 1 kept in 24 % of cases)
+
+  state mask only, test_id
+      test_id M   5/12  (1375s, eta 1925s)
+      test_id M   10/12  (2682s, eta 536s)
+    median     26.8 % ->   19.1 %
+    p90        82.3 % ->   40.7 %
+    failures    100 % ->     83 %   (start 1 kept in 25 % of cases)
+
+==============================================================================
+[2] the two failure modes respond differently
+==============================================================================
+  arm                                      median         failures > 5 %
+  state mask + plume|test_id       0.7 ->   0.4 %           16 ->     4 %
+  state mask + plume|test_ood      0.8 ->   0.8 %           36 ->    20 %
+  state mask only|test_id         26.8 ->  19.1 %          100 ->    83 %
+
+  Out of distribution with the plume, restarting removes 44 % of
+  the failures, because they were the optimiser losing an answer that was
+  present in the data.
+
+  With masks alone it changes the failure rate from 100 % to 83 %.
+  Selecting by misfit cannot work when every candidate has the same misfit.
+  A better optimiser does not buy information that is not there.
+
+wrote C:\Users\Administrator\新建文件夹\results\fusion_multistart.json
+wrote C:\Users\Administrator\新建文件夹\figures\fig_fusion_multistart.png

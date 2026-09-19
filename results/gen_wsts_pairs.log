@@ -1,0 +1,17 @@
+﻿{'train': 122, 'val': 24, 'test': 55}
+  train 20/122 fires, 132 pairs (20s)
+  train 40/122 fires, 248 pairs (38s)
+  train 60/122 fires, 322 pairs (52s)
+  train 80/122 fires, 424 pairs (68s)
+  train 100/122 fires, 613 pairs (91s)
+  train 120/122 fires, 714 pairs (109s)
+  train   714 pairs from 122 fires, 0.41 % positive pixels -> train.npz (132 MB)
+
+  val 20/24 fires, 90 pairs (17s)
+  val      92 pairs from  24 fires, 0.23 % positive pixels -> val.npz (17 MB)
+
+  test 20/55 fires, 93 pairs (19s)
+  test 40/55 fires, 397 pairs (42s)
+  test    610 pairs from  55 fires, 0.32 % positive pixels -> test.npz (106 MB)
+
+wrote C:\Users\Administrator\新建文件夹\results\wsts_pairs.json

@@ -1,0 +1,68 @@
+﻿reading 900 perimeters
+
+  processed 150/900  (kept 149)
+  processed 300/900  (kept 299)
+  processed 450/900  (kept 449)
+  processed 600/900  (kept 599)
+  processed 750/900  (kept 749)
+  processed 900/900  (kept 895)
+
+  kept 895
+
+==============================================================================
+[1] the same fire, measured four or five defensible ways
+==============================================================================
+         estimator   median LB      p25      p75
+            moment        1.80     1.45     2.34
+              hull        1.63     1.37     2.04
+          min_rect        1.58     1.27     2.03
+       fit_outline        1.68     1.41     2.12
+          smoothed        1.80     1.45     2.35
+
+    the estimators disagree in the median by 14 % (min_rect = 1.58 vs smoothed = 1.80)
+
+==============================================================================
+[2] per-fire disagreement: how well-posed is 'the' L/B of a real fire?
+==============================================================================
+    relative standard deviation across estimators, p25:   4.1 %
+    relative standard deviation across estimators, p50:   6.7 %
+    relative standard deviation across estimators, p75:  10.0 %
+    relative standard deviation across estimators, p90:  13.8 %
+    mean 7.5 %
+    full range (max-min)/mean, median: 15.2 %
+    fraction of fires where the estimators differ by more than 20 %: 32.4 %
+
+==============================================================================
+[3] what this does to the wind
+==============================================================================
+    Section 2 needs an uncertainty on the shape relation. This measures only
+    one part of it -- the ambiguity in reading L/B off a perimeter at all --
+    and that alone is already:
+      U = 1.5 m/s (elasticity 0.843) -> sigma(U) >=   7.9 %
+      U = 2.0 m/s (elasticity 1.159) -> sigma(U) >=   5.8 %
+      U = 2.5 m/s (elasticity 1.468) -> sigma(U) >=   4.6 %
+      U = 3.0 m/s (elasticity 1.769) -> sigma(U) >=   3.8 %
+      U = 3.5 m/s (elasticity 2.062) -> sigma(U) >=   3.2 %
+
+    and the fuel-to-fuel variation in the relation itself, the suppression
+    that shaped these perimeters, and the mapping error in them are all on top.
+
+==============================================================================
+[4] real fires sit where the shape channel is weakest
+==============================================================================
+      observed LB   implied U   elasticity  sigma(U) from a 6.7% LB reading
+    p10     1.24        0.51        0.241                            28 %   MISSES
+    p25     1.45        0.82        0.419                            16 %   MISSES
+    p50     1.80        1.23        0.670                            10 %
+    p75     2.34        1.70        0.971                             7 %
+    p90     3.04        2.15        1.254                             5 %
+
+    The median real fire has LB = 1.80, which Anderson's
+    relation places at 1.23 m/s midflame with an elasticity of
+    only 0.670. The elasticity vanishes as LB approaches 1, so the
+    shape carries least about the wind exactly where real fires are found.
+    Fraction of real fires where the measured L/B ambiguity alone already
+    puts the wind outside a 10 % tolerance: 50 %
+
+wrote C:\Users\Administrator\新建文件夹\results\real_lb_spread.json
+wrote C:\Users\Administrator\新建文件夹\figures\fig_real_lb_spread.png

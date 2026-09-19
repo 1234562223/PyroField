@@ -1,0 +1,48 @@
+﻿
+M: profiling theta_w over 15 fixed values
+   theta_w   +0.0 deg  chi2 = 1.110213e+05   (65s)
+   theta_w   -0.2 deg  chi2 = 1.110733e+05   (68s)
+   theta_w   +0.2 deg  chi2 = 1.110633e+05   (77s)
+   theta_w   +0.3 deg  chi2 = 1.112008e+05   (66s)
+   theta_w   -0.3 deg  chi2 = 1.112196e+05   (83s)
+   theta_w   +0.5 deg  chi2 = 1.114331e+05   (69s)
+   theta_w   -0.5 deg  chi2 = 1.114591e+05   (75s)
+   theta_w   -0.7 deg  chi2 = 1.117933e+05   (69s)
+   theta_w   +0.7 deg  chi2 = 1.117583e+05   (75s)
+   theta_w   -0.8 deg  chi2 = 1.122223e+05   (72s)
+   theta_w   +0.8 deg  chi2 = 1.121764e+05   (73s)
+   theta_w   -1.0 deg  chi2 = 1.127424e+05   (96s)
+   theta_w   +1.0 deg  chi2 = 1.126896e+05   (70s)
+   theta_w   -1.1 deg  chi2 = 1.133590e+05   (72s)
+   theta_w   +1.1 deg  chi2 = 1.132941e+05   (84s)
+   1-sigma half-width on theta_w: 0.00 deg
+
+M+P+C: profiling theta_w over 15 fixed values
+   theta_w   +0.0 deg  chi2 = 1.487819e+05   (129s)
+   theta_w   -0.2 deg  chi2 = 1.488448e+05   (105s)
+   theta_w   +0.2 deg  chi2 = 1.488337e+05   (59s)
+   theta_w   +0.3 deg  chi2 = 1.489947e+05   (59s)
+   theta_w   -0.3 deg  chi2 = 1.490231e+05   (60s)
+   theta_w   +0.5 deg  chi2 = 1.492632e+05   (110s)
+   theta_w   -0.5 deg  chi2 = 1.493054e+05   (78s)
+   theta_w   -0.7 deg  chi2 = 1.497002e+05   (87s)
+   theta_w   +0.7 deg  chi2 = 1.496624e+05   (70s)
+   theta_w   -0.8 deg  chi2 = 1.502033e+05   (131s)
+   theta_w   +0.8 deg  chi2 = 1.501626e+05   (96s)
+   theta_w   -1.0 deg  chi2 = 1.508379e+05   (62s)
+   theta_w   +1.0 deg  chi2 = 1.508078e+05   (85s)
+   theta_w   -1.1 deg  chi2 = 1.515553e+05   (133s)
+   theta_w   +1.1 deg  chi2 = 1.515495e+05   (114s)
+   1-sigma half-width on theta_w: 0.00 deg
+
+==============================================================================
+VERDICT for theta_w: which Jacobian estimator matches the likelihood?
+==============================================================================
+  set        profile 1-sigma   AD Fisher CRB   FD Fisher CRB
+  M                 0.000 deg         0.000 deg         0.000 deg
+  M+P+C             0.000 deg         0.000 deg         0.000 deg
+  M: profile is closer to AD (AD off by 10^8.6, FD off by 10^8.6)
+  M+P+C: profile is closer to AD (AD off by 10^8.6, FD off by 10^8.6)
+
+wrote C:\Users\Administrator\新建文件夹\figures\fig_profile_theta_w.png
+wrote C:\Users\Administrator\新建文件夹\results\profile_theta_w.json

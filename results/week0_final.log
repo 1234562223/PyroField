@@ -1,0 +1,191 @@
+﻿device=cuda  truth={'R0': 0.1, 'U': 4.0, 'theta_w': 0.7854, 'lb_k': 0.35, 'w_buoy': 3.0, 'Q': 1.0}
+scenario: 96x96 @ 15.0m, 110 steps x 15.0s = 28 min
+
+==============================================================================
+[0] Jacobian sanity: finite differences vs autograd
+==============================================================================
+    R0       relative disagreement =   0.07 %
+    U        relative disagreement =   0.16 %
+    theta_w  relative disagreement =   0.04 %
+    lb_k     relative disagreement =   0.05 %
+    w_buoy   relative disagreement =   0.08 %
+    Q        relative disagreement =   0.00 %
+    worst = 0.16 %   [target < 15 % on a kinked, limited scheme]
+
+==============================================================================
+[1a] Identifiability vs how far the fire has run (fire block)
+==============================================================================
+
+  early  (9.0 min)   burn = 1.70% of domain
+    subset            R0           U     theta_w        lb_k
+    M              6.116        6.92    0.002842       6.924
+    M+P         0.002035   0.0007697    0.001284     0.01125
+    M+C          0.00782     0.00843    0.002842     0.01531
+    M+P+C       0.002023   0.0007657    0.001282     0.01112
+
+  full  (27.5 min)   burn = 7.45% of domain
+    subset            R0           U     theta_w        lb_k
+    M            0.01961     0.02217   0.0004172     0.02223
+    M+P        0.0005116   0.0003291   0.0003835    0.001882
+    M+C         0.004147    0.004652    0.000416    0.005011
+    M+P+C      0.0005103   0.0003278   0.0003822    0.001877
+
+    mask-only CRB(U):  early 6.92  ->  full 0.0222   (312x worse early)
+    mask+plume CRB(U): early 0.00077  ->  full 0.000329   (essentially flat in time)
+
+==============================================================================
+[1b] The air-quality sensor's value vs the camera's dynamic range
+==============================================================================
+  calibrated  (tau ~ 3): 0% of pixels near saturation
+     CRB(Q) from mask+plume        = 0.00383
+     CRB(Q) adding the point sensor = 0.00372   (1.0x better)
+  saturated  (tau ~ 3200): 54% of pixels near saturation
+     CRB(Q) from mask+plume        = 0.02038
+     CRB(Q) adding the point sensor = 0.00807   (2.5x better)
+
+==============================================================================
+[1] Fisher information per sensor subset (Cramer-Rao bounds)
+==============================================================================
+
+  M  (mask only)   (36864 observations, 25.7s)
+    eigenvalues (asc): 1.096e-04, 1.096e-04, 5.341e+02, 1.826e+05, 2.644e+06, 3.748e+06
+    condition number : 3.420e+10
+    weakest direction (all 6 params) : +1.00*w_buoy  +0.00*R0  +0.00*theta_w
+    weakest direction (fire block)   : -0.60*U  +0.60*lb_k  +0.53*R0   [lambda_min = 5.341e+02, cond = 7.02e+03]
+    Cramer-Rao sigma (fractional for R0/U/k_LB/w_b/Q, rad for theta_w):
+      R0           0.023
+      U            0.026
+      theta_w      0.001
+      lb_k         0.026
+      w_buoy      95.528  UNIDENTIFIABLE
+      Q           95.528  UNIDENTIFIABLE
+
+  M+P (mask + plume image)   (43136 observations, 25.5s)
+    eigenvalues (asc): 2.721e+04, 1.164e+05, 3.389e+05, 1.744e+06, 4.567e+06, 1.188e+07
+    condition number : 4.365e+02
+    weakest direction (all 6 params) : +0.56*lb_k  -0.51*Q  -0.39*U
+    weakest direction (fire block)   : +0.97*lb_k  +0.21*R0  -0.12*U   [lambda_min = 9.745e+04, cond = 9.97e+01]
+    Cramer-Rao sigma (fractional for R0/U/k_LB/w_b/Q, rad for theta_w):
+      R0           0.002
+      U            0.002
+      theta_w      0.001
+      lb_k         0.004
+      w_buoy       0.002
+      Q            0.004
+
+  M+C (mask + air-quality)   (36876 observations, 25.5s)
+    eigenvalues (asc): 1.110e-04, 3.900e+02, 1.978e+04, 1.853e+05, 2.679e+06, 3.773e+06
+    condition number : 3.400e+10
+    weakest direction (all 6 params) : +1.00*w_buoy  +0.00*R0  +0.00*theta_w
+    weakest direction (fire block)   : +0.61*lb_k  -0.59*U  +0.53*R0   [lambda_min = 5.782e+03, cond = 6.52e+02]
+    Cramer-Rao sigma (fractional for R0/U/k_LB/w_b/Q, rad for theta_w):
+      R0           0.023
+      U            0.026
+      theta_w      0.001
+      lb_k         0.026
+      w_buoy      94.936  UNIDENTIFIABLE
+      Q            0.027
+
+  M+P+C (all three)   (43148 observations, 25.5s)
+    eigenvalues (asc): 2.738e+04, 1.245e+05, 3.499e+05, 1.759e+06, 4.589e+06, 1.190e+07
+    condition number : 4.347e+02
+    weakest direction (all 6 params) : +0.57*lb_k  -0.50*Q  -0.39*U
+    weakest direction (fire block)   : +0.97*lb_k  +0.21*R0  -0.12*U   [lambda_min = 9.826e+04, cond = 9.92e+01]
+    Cramer-Rao sigma (fractional for R0/U/k_LB/w_b/Q, rad for theta_w):
+      R0           0.002
+      U            0.002
+      theta_w      0.001
+      lb_k         0.004
+      w_buoy       0.002
+      Q            0.004
+
+==============================================================================
+[2] Actual inversion: LM from 4 random starts per subset
+==============================================================================
+    coarse-to-fine ladder (plume blur sigma, iters): ((4.0, 8), (2.0, 6), (1.0, 5), (0.0, 14))
+
+  M  (mask only)
+    start 0: loss 2.92e+05 -> 3.67e+04 (5 accepted / 12 it, 137s)   R0=94%  U=62%  theta_w=0.0deg  Q=45%
+    start 1: loss 1.50e+05 -> 3.67e+04 (9 accepted / 15 it, 156s)   R0=77%  U=54%  theta_w=0.0deg  Q=36%
+    start 2: loss 1.72e+05 -> 3.67e+04 (5 accepted / 11 it, 124s)   R0=84%  U=58%  theta_w=0.0deg  Q=4%
+    start 3: loss 2.61e+05 -> 3.67e+04 (5 accepted / 11 it, 124s)   R0=93%  U=61%  theta_w=0.0deg  Q=14%
+    MLE (best of 4, loss 3.673e+04):
+      R0           93.55 %   (restart sd 6.90)
+      U            61.58 %   (restart sd 2.95)
+      theta_w       0.01 deg   (restart sd 0.00)
+      lb_k        159.31 %   (restart sd 16.92)
+      w_buoy       32.57 %   (restart sd 8.21)
+      Q            44.99 %   (restart sd 16.50)
+
+  M+P (mask + plume image)
+    start 0: loss 3.82e+05 -> 4.30e+04 (17 accepted / 21 it, 192s)   R0=0%  U=0%  theta_w=0.0deg  Q=0%
+    start 1: loss 4.65e+05 -> 4.30e+04 (14 accepted / 19 it, 190s)   R0=0%  U=0%  theta_w=0.0deg  Q=0%
+    start 2: loss 7.54e+05 -> 4.30e+04 (19 accepted / 22 it, 195s)   R0=0%  U=0%  theta_w=0.0deg  Q=0%
+    start 3: loss 7.82e+04 -> 4.30e+04 (12 accepted / 21 it, 225s)   R0=0%  U=0%  theta_w=0.0deg  Q=0%
+    MLE (best of 4, loss 4.297e+04):
+      R0            0.31 %   (restart sd 0.09)
+      U             0.41 %   (restart sd 0.15)
+      theta_w       0.02 deg   (restart sd 0.00)
+      lb_k          0.14 %   (restart sd 0.13)
+      w_buoy        0.45 %   (restart sd 0.18)
+      Q             0.31 %   (restart sd 0.09)
+
+  M+C (mask + air-quality)
+    start 0: loss 1.83e+05 -> 3.67e+04 (13 accepted / 16 it, 154s)   R0=19%  U=26%  theta_w=0.0deg  Q=28%
+    start 1: loss 1.80e+05 -> 3.67e+04 (8 accepted / 13 it, 139s)   R0=61%  U=47%  theta_w=0.0deg  Q=46%
+    start 2: loss 2.98e+05 -> 3.67e+04 (16 accepted / 21 it, 205s)   R0=172%  U=87%  theta_w=0.0deg  Q=87%
+    start 3: loss 1.41e+05 -> 3.67e+04 (6 accepted / 12 it, 134s)   R0=22%  U=31%  theta_w=0.0deg  Q=33%
+    MLE (best of 4, loss 3.674e+04):
+      R0           19.36 %   (restart sd 61.91)
+      U            26.14 %   (restart sd 24.00)
+      theta_w       0.01 deg   (restart sd 0.00)
+      lb_k         21.01 %   (restart sd 275.23)
+      w_buoy       40.33 %   (restart sd 10.69)
+      Q            28.40 %   (restart sd 23.03)
+
+  M+P+C (all three)
+    start 0: loss 3.78e+05 -> 8.59e+04 (20 accepted / 26 it, 245s)   R0=27%  U=40%  theta_w=0.2deg  Q=47%
+    start 1: loss 5.14e+05 -> 4.30e+04 (18 accepted / 22 it, 192s)   R0=0%  U=0%  theta_w=0.0deg  Q=0%
+    start 2: loss 6.92e+05 -> 4.30e+04 (17 accepted / 20 it, 185s)   R0=0%  U=0%  theta_w=0.0deg  Q=0%
+    start 3: loss 1.63e+06 -> 4.30e+04 (23 accepted / 26 it, 226s)   R0=0%  U=0%  theta_w=0.0deg  Q=0%
+    MLE (best of 4, loss 4.298e+04):
+      R0            0.02 %   (restart sd 11.67)
+      U             0.05 %   (restart sd 17.49)
+      theta_w       0.02 deg   (restart sd 0.07)
+      lb_k          0.19 %   (restart sd 12.93)
+      w_buoy        0.07 %   (restart sd 18.39)
+      Q             0.17 %   (restart sd 20.26)
+
+==============================================================================
+[3] VERDICT
+==============================================================================
+  P1 masks confound fuel with wind SPEED (but do give wind DIRECTION)
+     weak direction is the R0/U/k_LB trade-off (load 1.73): -0.60*U  +0.60*lb_k  +0.53*R0   -> OK
+     early-window CRB(U) = 6.92 (above the 10% tolerance)   -> OK
+     degeneracy is a function of burn development: 312x worse at 9 min than at 27.5 min   -> OK
+     MLE error on U = 62% while theta_w is only 0.01 deg   -> OK
+
+  P2 the plume image breaks that confound (smoke is advected by wind,
+     independently of fuel)
+     CRB(U) at full window: 0.0260 -> 0.00069   (38x)
+     CRB(U) at 9 min:       6.92 -> 0.00077   (8991x)  <- the window that matters
+     MLE error on U: 62% -> 0.4%  (149.8x)   -> OK
+
+  P3 the air-quality point supplies emission strength Q only when the
+     camera cannot -- its value is conditional on the image not saturating
+     saturated image  (54% of pixels at the ceiling): adding the sensor improves CRB(Q) 2.5x   -> OK
+     calibrated image (0% at the ceiling): adding the sensor improves CRB(Q) 1.0x   -> OK
+     (MLE error on Q with mask+plume alone: 0.31%)
+
+  P4 the practical consequence, in minutes
+     wind 2 m/s: U known to 10% at  never (>27 min) with masks, 2.2 min with the plume  -> 24.8 min gained
+     wind 4 m/s: U known to 10% at         19.8 min with masks, 2.2 min with the plume  -> 17.5 min gained
+     wind 6 m/s: U known to 10% at         13.6 min with masks, 2.2 min with the plume  -> 11.4 min gained
+     -> OK
+
+  (context) mask-only CRB on smoke terms: Q=9.6e+01  w_buoy=9.6e+01  -- masks carry no information about either
+
+  *** GO ***  the state-space formulation is doing real work
+
+  total wall time: 49.6 min
+  wrote C:\Users\Administrator\新建文件夹\results\week0.json

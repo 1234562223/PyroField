@@ -1,0 +1,49 @@
+﻿resuming from profile_U_ckpt.json: {'M': 15, 'M+P+C': 0}
+
+M: profiling U over 15 fixed values
+   U x 1.00  chi2 = 1.110211e+05   (from checkpoint)
+   U x 0.92  chi2 = 1.110220e+05   (from checkpoint)
+   U x 1.08  chi2 = 1.110233e+05   (from checkpoint)
+   U x 0.85  chi2 = 1.110218e+05   (from checkpoint)
+   U x 1.17  chi2 = 1.110212e+05   (from checkpoint)
+   U x 0.79  chi2 = 1.110220e+05   (from checkpoint)
+   U x 1.27  chi2 = 1.110226e+05   (from checkpoint)
+   U x 0.73  chi2 = 1.110218e+05   (from checkpoint)
+   U x 1.37  chi2 = 1.110222e+05   (from checkpoint)
+   U x 0.68  chi2 = 1.110233e+05   (from checkpoint)
+   U x 1.48  chi2 = 1.110213e+05   (from checkpoint)
+   U x 0.62  chi2 = 1.110225e+05   (from checkpoint)
+   U x 1.60  chi2 = 1.110219e+05   (from checkpoint)
+   U x 0.58  chi2 = 1.110216e+05   (from checkpoint)
+   U x 1.73  chi2 = 1.110211e+05   (from checkpoint)
+   1-sigma half-width on U: 57.82 % of truth (hits the scan edge -- even wider than this)
+
+M+P+C: profiling U over 15 fixed values
+   U x 1.00  chi2 = 1.487830e+05   (56s)
+   U x 0.92  chi2 = 1.563485e+05   (132s)
+   U x 1.08  chi2 = 1.618047e+05   (139s)
+   U x 0.85  chi2 = 1.714631e+05   (129s)
+   U x 1.17  chi2 = 1.936612e+05   (113s)
+   U x 0.79  chi2 = 1.918846e+05   (112s)
+   U x 1.27  chi2 = 2.523931e+05   (123s)
+   U x 0.73  chi2 = 2.262096e+05   (97s)
+   U x 1.37  chi2 = 3.540160e+05   (124s)
+   U x 0.68  chi2 = 2.757925e+05   (107s)
+   U x 1.48  chi2 = 3.986545e+05   (117s)
+   U x 0.62  chi2 = 2.749933e+05   (108s)
+   U x 1.60  chi2 = 4.153886e+05   (91s)
+   U x 0.58  chi2 = 2.972943e+05   (63s)
+   U x 1.73  chi2 = 4.682199e+05   (140s)
+   1-sigma half-width on U: 0.00 % of truth
+
+==============================================================================
+VERDICT for U: which Jacobian estimator matches the likelihood?
+==============================================================================
+  set        profile 1-sigma   AD Fisher CRB   FD Fisher CRB
+  M                57.815 %      3844.975 %         2.217 %
+  M+P+C             0.000 %         0.075 %         0.076 %
+  M: profile is closer to FD (AD off by 10^1.8, FD off by 10^1.4)
+  M+P+C: profile is closer to AD (AD off by 10^8.9, FD off by 10^8.9)
+
+wrote C:\Users\Administrator\新建文件夹\figures\fig_profile_U.png
+wrote C:\Users\Administrator\新建文件夹\results\profile_U.json

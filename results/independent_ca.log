@@ -1,0 +1,108 @@
+﻿==============================================================================
+[1] the exact null curve, derived from PyTorchFire's own equation
+==============================================================================
+    baseline: p_h=0.42  V=5.0 m/s  c_1=0.045  c_2=0.131
+    tangent in (ln p_h, ln V, ln c_2): v = (-0.2250, +1, -1)
+
+     wind err       V       p_h       c_2  max |dp| over the 8 directions
+           5 %   5.250   0.41530   0.12476                        0.00e+00
+          10 %   5.500   0.41066   0.11909                        1.11e-16
+          20 %   6.000   0.40152   0.10917                        0.00e+00
+          30 %   6.500   0.39259   0.10077                        0.00e+00
+          50 %   7.500   0.37531   0.08733                        1.11e-16
+          80 %   9.000   0.35081   0.07278                        1.11e-16
+
+    Exact to 1.1e-16 across an 80 % wind error.
+    Along the *tangent* instead, the drift reaches 2.1e-02 -- the null space is a curve,
+    not a line, exactly as in section 1.
+
+==============================================================================
+[2] the realised masks, on matched random seeds
+==============================================================================
+    160x160 lattice, 70 steps, 12 seeds per setting
+
+     wind err    compensated    uncompensated
+          10 %        0.0000 %            4.25 %
+          30 %        0.0000 %           10.80 %
+          50 %        0.0000 %           15.99 %
+          80 %        0.0000 %           20.34 %
+
+    Not 'statistically indistinguishable' -- identical. The transition kernel
+    is the same object, so every realisation on a given seed is the same fire.
+
+==============================================================================
+[3] which coefficient has to be free? (the identifiability lattice)
+==============================================================================
+    Smallest mask-probability distance still achievable after compensating a
+    +30 % wind error with the coefficients allowed to move:
+    p_h and c_2 both free              residual 0.00e+00   degenerate   (optimiser finds 1.1e-11)
+    only p_h free (shape law known)    residual 9.34e-02   identifiable
+    only c_2 free (fuel known)         residual 4.24e-02   identifiable
+    neither free                       residual 9.66e-02   identifiable
+
+    The degeneracy needs *both* a free fuel coefficient and a free shape
+    coefficient, which is the same condition section 2 finds for FARSITE.
+    Freeing the fuel coefficient alone barely helps (9.3e-2 against 9.7e-2 for
+    nothing free): it moves all eight probabilities together, and a wind error
+    changes their ratios.
+
+==============================================================================
+[4] positive control: can a wind *rotation* be compensated away?
+==============================================================================
+     rotation   best residual    vs a 30 % speed error
+           5 d       3.389e-02                         
+          10 d       6.749e-02                         
+          20 d       1.327e-01                         
+          45 d       2.719e-01                         
+
+    A speed error is absorbable to 0e+00; a 5-degree rotation leaves 3.39e-02.
+    Wind direction is identifiable from the mask in this model too, which is
+    the same split section 1 finds: the mask gives the bearing, not the speed.
+
+==============================================================================
+[5] and the shape channel here is worse than FARSITE's, for other reasons
+==============================================================================
+    Section 2's argument runs through saturation: Anderson's relation is
+    truncated at LB = 8, so above 3.80 m/s the shape stops responding. This
+    model has no such truncation. Measuring what it does instead --
+    every fire run until its head has advanced a fixed 42 cells, so that shape
+    is compared at matched progress rather than at matched step count:
+
+         V  steps    area  L/B one-step   L/B measured   batch 2
+       1.0     90   95.2%         1.005          1.004     1.005
+       2.0     87   88.9%         1.021          1.026     1.024
+       3.0     84   78.8%         1.050          1.081     1.084
+       5.0     78   56.7%         1.154          1.145     1.154
+       8.0     70   29.2%         1.438          1.540     1.535
+      12.0     62   17.3%         2.100          1.375     1.387
+      20.0     51   10.1%         4.850          1.203     1.152
+      30.0     44    7.3%        13.047          1.121     1.095
+      45.0     42    6.8%        49.625          1.130     1.120
+
+    The measured L/B is **not monotone**: it rises to 1.54 at V = 8 m/s and then falls
+    back to 1.13. A fire of L/B = 1.38 is consistent with two different winds,
+    so the shape does not merely saturate here -- it is two-valued.
+
+    The one-step ellipse (which would predict L/B = 49.6 at 45 m/s) tracks the
+    measured shape only below about 8 m/s. Above that the burn is not an
+    ellipse at all but a wedge with a flat leading edge, because the lattice's
+    45-degree diagonals are cheap and bound the spread.
+
+    Is that a lattice artefact? Rotate the wind against the lattice and see.
+
+     wind bearing     0 deg 11.25 deg  22.5 deg 33.75 deg    45 deg
+    V =    8 m/s       1.530     1.522     1.358     1.303     1.260
+    V =   20 m/s       1.194     1.257     1.269     1.290     1.291
+
+    At 8 m/s the measured L/B moves by 0.271 (19 %) with the wind bearing alone,
+    at fixed wind speed. The shape is not rotation invariant, so a part of it
+    is the stencil rather than the fire.
+
+    Three independent defects, none of them Anderson's cap: the shape is
+    two-valued in wind, it is not an ellipse, and it depends on the bearing
+    relative to the grid. And parts [1] and [2] hold regardless of all of it,
+    because that degeneracy is a statement about the transition kernel and
+    never routes through the shape.
+
+wrote C:\Users\Administrator\新建文件夹\results\independent_ca.json
+wrote C:\Users\Administrator\新建文件夹\figures\fig_independent_ca.png

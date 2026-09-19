@@ -1,0 +1,141 @@
+﻿201 fire events on disk
+  25/201 fires, 96 usable fire-days
+  50/201 fires, 214 usable fire-days
+  75/201 fires, 271 usable fire-days
+  100/201 fires, 292 usable fire-days
+  125/201 fires, 496 usable fire-days
+python.exe : C:\Users\Administrator\新建文件夹\scripts\wsts_advance.py:168: RuntimeWarning: All-NaN slice encountered
+At line:1 char:368
++ ... NG="utf-8"; & "C:\Users\Administrator\miniconda3\python.exe" -u scrip ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (C:\Users\Admini...ice encountered:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  "ndvi": float(np.nanmedian(a[B_NDVI][fp])),
+  150/201 fires, 582 usable fire-days
+  175/201 fires, 800 usable fire-days
+  200/201 fires, 1043 usable fire-days
+
+1044 fire-days with a measurable advance (>= 8 new pixels on an existing burn)
+  gating: 65 days dropped whole as swath artefacts; 85369 detections joined a fire and 335379 detection-days were held outside the 4 km gate (a detection outside the gate is reconsidered every day, so that count is detection-days, not pixels)
+
+==============================================================================
+[1] positive control: does the fire move downwind?
+==============================================================================
+    1030 fire-days with a centroid step of at least 375 m
+    circular mean of (advance bearing - GRIDMET wind direction): 145.3 deg
+    resultant length R = 0.146   (0 = no relation, 1 = perfect)
+    within +/- 45 deg of that mean: 32 % of fire-days
+
+    The offset sits near 145 deg, so GRIDMET's direction is the
+    meteorological convention (the wind it names is where the air comes
+    *from*) and the fire runs the other way -- which is the sign the
+    measurement is real rather than an indexing artefact.
+    shuffling the wind against the fires gives R = 0.070 +/- 0.019; measured R is 4 sigma above that.
+
+      detections that day  fire-days       R  within 45 deg
+                     >= 8       1030   0.146            32 %
+                    >= 20        782   0.170            32 %
+                    >= 50        481   0.156            33 %
+                   >= 100        274   0.189            34 %
+                   >= 200         93   0.328            43 %
+
+==============================================================================
+[2] the degenerate channel: does the advance rate give the wind speed?
+==============================================================================
+    Four ways of measuring how far the fire got, because they fail
+    differently and picking one in advance would be a choice, not a result:
+
+             advance measure       n  r(log, log)      r^2
+      distance to front, p90    1044        0.096   0.0093
+      distance to front, p75    1044        0.083   0.0068
+    distance to front, median    1044        0.076   0.0058
+    equivalent-radius growth    1044        0.118   0.0139
+
+      detections that day  fire-days   r (p90)  r (radius)
+                     >= 8       1044     0.096       0.118
+                    >= 20        792     0.117       0.148
+                    >= 50        484     0.121       0.191
+                   >= 100        275     0.159       0.192
+                   >= 200         93     0.192       0.234
+
+    It does improve, from r = 0.10 to r = 0.19, exactly as the direction
+    channel does. So this dataset cannot separate 'the speed is not in the
+    data' from 'the speed is in the data and measured even worse than the
+    bearing'. What it does establish is the operational fact: at the best
+    measurement available here the advance still explains under 6 % of the
+    variance in wind, against 0.33 resultant length for the bearing.
+
+    Binning on the p90 measure:
+
+         advance (m/day)      n  wind p25   median      p75   p10-p90
+         375 - 706          209      2.50     3.20     4.20       91 %
+         706 - 839          151      2.60     3.10     3.80       81 %
+         839 - 1500         260      2.50     3.20     4.20       97 %
+        1500 - 2815         215      2.50     3.30     4.40       91 %
+        2815 - 3944         209      2.70     3.50     4.40       91 %
+
+    Across the whole range of advance rates the median wind moves from 3.20 to 3.50 m/s,
+    while the wind *within* one advance bin spans 91 % (p10-p90).
+
+==============================================================================
+[3] the mechanism: does conditioning on the fuel recover the wind?
+==============================================================================
+    If the confound is R0 x wind, holding the fuel still should sharpen the
+    wind term. Regressing log(advance) on log(wind) with and without the
+    fuel and terrain covariates the dataset carries:
+
+                           model      R^2   wind coef       se       t
+                       wind only   0.0093      0.1919   0.0615     3.1
+      + energy release component   0.0297      0.2315   0.0614     3.8
+                     + ERC, NDVI   0.0624      0.2220   0.0628     3.5
+              + ERC, NDVI, slope   0.0839      0.1983   0.0623     3.2
+
+    Adding the fuel and terrain covariates moves R^2 from 0.0093 to 0.0839
+    and the wind coefficient from 0.192 to 0.198.
+
+==============================================================================
+[4] two stratifications: terrain, and how hard the wind was blowing
+==============================================================================
+    Section 5 predicts that on a slope the resultant of wind and slope stops
+    pointing downwind, so the bearing stops reporting the wind. Whether this
+    sample can see that is a separate question from whether it is true, and
+    the answer below is that it cannot: WildfireSpreadTS fires are almost all
+    in the mountainous western United States, so the flat stratum is tiny.
+
+             terrain  fire-days    offset       R  within 45 deg
+       slope < 3 deg         41      353d   0.065            34 %
+           3 - 8 deg        158      163d   0.171            34 %
+          8 - 15 deg        562      136d   0.155            31 %
+     slope >= 15 deg        269      155d   0.154            30 %
+
+    R is flat across the slope bands (0.15 - 0.17) and the flat stratum,
+    which section 5 says should be the *best*, has only 41 fire-days and the
+    lowest R of all. That is an underpowered comparison, not a refutation: the
+    median slope over a fire's footprint is also a poor summary of terrain a
+    fire actually ran across. The prediction is untested here, not tested and failed.
+
+    And by how hard the wind was blowing, since a weak wind is a weak
+    forcing and the fire is then free to follow anything else:
+
+                  wind  fire-days    offset       R  within 45 deg
+        wind < 2.8 m/s        329      143d   0.070            30 %
+         2.8 - 3.8 m/s        329      162d   0.178            31 %
+       wind >= 3.8 m/s        372      132d   0.195            35 %
+
+    R rises monotonically with the wind, 0.070 -> 0.178 -> 0.195. Together with its rise from
+    0.146 to 0.328 as the detections per day go from 8 to 200, the bearing
+    signal behaves as a real but badly measured quantity should: it
+    strengthens when the forcing is stronger and when the measurement is
+    better. Part [2] shows the speed signal does the second of those too,
+    so the difference between the channels here is one of degree, not of
+    kind. The kind is established by section 1 and section 13, not by this.
+
+    One thing measured and not explained: the offset sits at 146 deg rather than 180,
+    consistently across every stratum (132 - 163 deg). Real fires run about
+    35 degrees off directly downwind in this sample. Terrain channelling and
+    the gap between a daily mean wind and the wind at the hour the fire ran
+    are both candidates; neither is established here.
+
+wrote C:\Users\Administrator\新建文件夹\results\wsts_advance.json
+wrote C:\Users\Administrator\新建文件夹\figures\fig_wsts_advance.png

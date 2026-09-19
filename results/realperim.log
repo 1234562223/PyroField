@@ -1,0 +1,55 @@
+﻿reading wfigs_perimeters.geojson (160 MB)
+  900 perimeters
+
+  processed 150/900  (kept 149)
+  processed 300/900  (kept 299)
+  processed 450/900  (kept 449)
+  processed 600/900  (kept 599)
+  processed 750/900  (kept 749)
+  processed 900/900  (kept 895)
+
+  kept 895, skipped 5
+
+==============================================================================
+[1] how well does an ellipse describe a real fire perimeter?
+==============================================================================
+    IoU with the area-matched moment ellipse, p05: 0.517
+    IoU with the area-matched moment ellipse, p25: 0.637
+    IoU with the area-matched moment ellipse, p50: 0.705
+    IoU with the area-matched moment ellipse, p75: 0.763
+    IoU with the area-matched moment ellipse, p95: 0.835
+    mean 0.694
+    fraction above 0.90: 0.0 %
+    fraction above 0.80: 12.2 %
+    fraction below 0.70: 48.0 %
+
+==============================================================================
+[2] are they even single blobs?
+==============================================================================
+    median number of disjoint parts: 2
+    fraction with more than one part: 51.5 %
+    largest part holds, median: 100.0 % of the burned area
+    fraction where the largest part holds under 90 %: 3.9 %
+
+==============================================================================
+[3] where do real length-to-breadth ratios sit?
+==============================================================================
+    LB p05: 1.16
+    LB p25: 1.45
+    LB p50: 1.80
+    LB p75: 2.34
+    LB p95: 3.63
+    LB p99: 5.36
+    max 10.96
+    fraction above FARSITE's cap of 8.0: 0.11 %
+
+    for reference, Anderson's relation predicts
+      LB =   2.78 at 2.0 m/s midflame wind
+      LB =   5.00 at 3.0 m/s midflame wind
+      LB =   9.02 at 4.0 m/s midflame wind
+      LB =  16.19 at 5.0 m/s midflame wind
+    so the median real fire, LB = 1.80, corresponds to a
+    midflame wind of roughly 2 m/s on that relation.
+
+wrote C:\Users\Administrator\新建文件夹\results\real_perimeters.json
+wrote C:\Users\Administrator\新建文件夹\figures\fig_real_perimeters.png

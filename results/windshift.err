@@ -1,0 +1,9 @@
+﻿python.exe : C:\Users\Administrator\新建文件夹\scripts\wind_shift_forecast.py:249: UserWarning: This figure includes Axes th
+at are not compatible with tight_layout, so results might be incorrect.
+At line:1 char:368
++ ... NG="utf-8"; & "C:\Users\Administrator\miniconda3\python.exe" -u scrip ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (C:\Users\Admini...t be incorrect.:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  fig.tight_layout()

@@ -1,0 +1,47 @@
+﻿fire centre ~ (546, 546) m,  wind blows towards 45 deg
+
+[0] AD vs finite differences for mask+plume at the default geometry
+    AD 0.08141 %   FD 0.08196 %   ratio 0.993   [target within 1.3x]
+    agreement acceptable: True
+
+[1] camera azimuth, at 900 m standoff and 60 m mast
+     azimuth  rel. to wind    CRB(U) M+P   vs masks
+         0.0         -45.0      0.07683%     50043x
+        22.5         -22.5      0.09386%     40964x
+        45.0          -0.0      0.10365%     37095x
+        67.5          22.5      0.09387%     40961x
+        90.0          45.0      0.07684%     50042x
+       112.5          67.5      0.08113%     47392x
+       135.0          90.0      0.08141%     47232x
+       157.5         112.5      0.09524%     40371x
+       180.0         135.0      0.10832%     35497x
+       202.5         157.5      0.10466%     36737x
+       225.0         180.0      0.09856%     39011x
+       247.5        -157.5      0.10466%     36736x
+       270.0        -135.0      0.10832%     35497x
+       292.5        -112.5      0.09524%     40371x
+       315.0         -90.0      0.08141%     47232x
+       337.5         -67.5      0.08113%     47393x
+    (701s)
+
+    best  azimuth 0 deg (-45 deg from wind): 0.07683 %
+    worst azimuth 180 deg (+135 deg from wind): 0.10832 %
+    spread across azimuth: 1.4x
+    worst-case gain over masks, over all azimuths: 35497x
+
+[2] standoff distance (azimuth fixed 90 deg across the wind, 60 m mast)
+        400 m   CRB(U) =   0.11124 %     34564x better than masks
+        700 m   CRB(U) =   0.08358 %     46001x better than masks
+       1000 m   CRB(U) =   0.08735 %     44018x better than masks
+       1500 m   CRB(U) =   0.12442 %     30904x better than masks
+       2200 m   CRB(U) =   0.17429 %     22061x better than masks
+
+[3] mast height (azimuth 90 deg, 900 m standoff)
+         10 m   CRB(U) =   0.08324 %     46191x better than masks
+         30 m   CRB(U) =   0.08221 %     46770x better than masks
+         60 m   CRB(U) =   0.08141 %     47232x better than masks
+        120 m   CRB(U) =   0.08045 %     47796x better than masks
+        250 m   CRB(U) =   0.08375 %     45911x better than masks
+
+wrote C:\Users\Administrator\新建文件夹\figures\fig_camera_geometry.png
+wrote C:\Users\Administrator\新建文件夹\results\camera_geometry.json

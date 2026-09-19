@@ -1,0 +1,47 @@
+﻿
+==============================================================================
+[2] does the verdict track the arm it should?
+==============================================================================
+
+  arm                              U called determined   median U error
+  state mask + plume|test_id                       88 %             0.7 %
+  state mask + plume|test_ood                      72 %             0.8 %
+  state mask only|test_id                          17 %            26.8 %
+
+  Wind speed is algebraically undetermined from masks alone (section 1) and
+  well determined with the plume (section 9). The guard is asked to say so
+  without being told which arm it is looking at.
+
+==============================================================================
+[3] are the intervals honest?
+==============================================================================
+
+  A 1-sigma interval should contain the truth about 68 % of the time. Cases
+  where the inversion converged badly are counted separately, because an
+  interval around the wrong point says nothing about the interval's width.
+
+  arm                             n determined   median sigma   truth inside   converged only
+  state mask + plume|test_id                22          0.52 %            55 %              57 %
+  state mask + plume|test_ood               18          0.43 %            61 %              67 %
+  state mask only|test_id                    2          1.68 %             0 %             nan %
+
+  Pooled over the converged cases: 22 of 36 = 61 %, 95 % interval 43-77 %.
+  The nominal 68 % is inside that interval, so these intervals are consistent with being honest;
+  36 cases cannot resolve better than that. The point estimate is low, and scaling sigma by 1.06 would land it exactly on 68 %.
+
+==============================================================================
+[4] the guard against the residual check, on the same cases
+==============================================================================
+
+  62 inversions, 25 of them wrong by more than 5 % on wind speed
+
+         raised by   wrong, caught   wrong, missed   right, flagged
+    residual check              10              15                2
+     profile guard              19               6                1
+            either              21               4                2
+
+  The residual check catches 10 of 25 and misses 15; the profile guard catches 19 and misses 6.
+  They fail on different cases, which is the point: a wrong answer that fits
+  the data perfectly is invisible to the first and obvious to the second.
+wrote C:\Users\Administrator\新建文件夹\figures\fig_guarded_inversion.png
+updated C:\Users\Administrator\新建文件夹\results\guarded_inversion.json

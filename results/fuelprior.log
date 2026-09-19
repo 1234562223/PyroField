@@ -1,0 +1,23 @@
+﻿truth: R_head = 0.31220 m/s, LB = 2.4000, wind-factor elasticity E = 0.8836
+so a fuel prior of sigma maps to a wind uncertainty of sigma/0.884 = 1.13 x sigma
+
+truth: fire reaches the road at 31.2 min
+
+   fuel prior  -> wind sigma      U range (m/s)     road-time window    width
+           2%             2%     3.91 - 4.09        31.2 - 32.2         1.0 min
+           5%             6%     3.78 - 4.23        31.2 - 32.2         1.0 min
+          10%            11%     3.56 - 4.47        30.2 - 33.2         3.0 min
+          20%            23%     3.15 - 4.97        29.2 - 34.2         5.0 min
+          35%            40%     2.58 - 5.79        28.2 - 36.2         8.0 min
+          50%            57%     2.06 - 6.70        27.2 - 39.2        12.0 min
+         100%           113%     0.52 - 10.55                  n/a
+
+  the plume measures wind speed to sigma = 0.095 %
+  matching that from a fuel map alone would require the fuel spread rate
+  known to 0.084 % -- about 417x better than an operational fuel model (~35 %).
+
+  at a realistic 35 % fuel prior the arrival-time forecast spans 8 minutes;
+  the plume collapses that to under a minute.
+
+wrote C:\Users\Administrator\新建文件夹\figures\fig_fuel_prior.png
+wrote C:\Users\Administrator\新建文件夹\results\fuel_prior.json

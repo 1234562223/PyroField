@@ -1,0 +1,35 @@
+﻿computing the Jacobian once ...
+  mask  : 110592 observations
+  plume : 37632 observations
+  conc  : 36 observations
+
+CRB(U) with masks alone, by mask noise:
+  sigma_mask=0.010  ->      0.443 %   (meets 10% tolerance)
+  sigma_mask=0.020  ->      0.886 %   (meets 10% tolerance)
+  sigma_mask=0.050  ->      2.216 %   (meets 10% tolerance)
+  sigma_mask=0.100  ->      4.432 %   (meets 10% tolerance)
+  sigma_mask=0.200  ->      8.864 %   (meets 10% tolerance)
+  sigma_mask=0.400  ->     17.728 %
+
+CRB(U) with mask + plume  [rows: mask noise, cols: plume noise]
+             0.005     0.010     0.020     0.050     0.100     0.200     0.400
+  0.010     0.0187    0.0368    0.0724    0.1693    0.2824    0.3792    0.4242
+  0.020     0.0196    0.0375    0.0735    0.1796    0.3387    0.5648    0.7585
+  0.050     0.0210    0.0398    0.0758    0.1838    0.3621    0.6960    1.2225
+  0.100     0.0217    0.0420    0.0796    0.1875    0.3676    0.7242    1.3921
+  0.200     0.0220    0.0434    0.0841    0.1955    0.3749    0.7353    1.4485
+  0.400     0.0220    0.0439    0.0869    0.2069    0.3910    0.7498    1.4705
+
+How noisy can the camera be and still beat masks alone?
+  sigma_mask=0.010: plume still helps up to sigma_plume>0.40   (gain at sigma_plume=0.02: 6x)
+  sigma_mask=0.020: plume still helps up to sigma_plume>0.40   (gain at sigma_plume=0.02: 12x)
+  sigma_mask=0.050: plume still helps up to sigma_plume>0.40   (gain at sigma_plume=0.02: 29x)
+  sigma_mask=0.100: plume still helps up to sigma_plume>0.40   (gain at sigma_plume=0.02: 56x)
+  sigma_mask=0.200: plume still helps up to sigma_plume>0.40   (gain at sigma_plume=0.02: 105x)
+  sigma_mask=0.400: plume still helps up to sigma_plume>0.40   (gain at sigma_plume=0.02: 204x)
+
+  masks alone meet the 10% tolerance for sigma_mask <= 0.200
+  mask+plume meets it even at sigma_mask=0.40, sigma_plume=0.40
+
+wrote C:\Users\Administrator\新建文件夹\figures\fig_noise_sensitivity.png
+wrote C:\Users\Administrator\新建文件夹\results\noise_sensitivity.json

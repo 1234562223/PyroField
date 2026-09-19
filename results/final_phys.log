@@ -1,0 +1,21 @@
+﻿device = cuda
+
+[1] Zero wind: front must be a circle of radius r0 + R0*t
+    analytic radius =   210.0 m
+    measured mean   =   206.2 m   (per-direction: 206, 206, 206, 206, 206, 206)
+    radius error    =   1.79 %      [target < 5 %]
+    anisotropy      =   0.00 %      [target < 5 %]
+
+[2] With wind: head / back / aspect must match the elliptical template
+    R_head=0.3122  R_back=0.0149  LB=2.40  e=0.909  b=0.0681 m/s
+    head:  analytic   560.1  measured   555.0   err  0.92 %
+    back:  analytic    69.5  measured    67.5   err  2.93 %
+    flank (ray, approx ref):    91.8 vs   101.2
+    region IoU vs exact Huygens burn = 0.9859   [target > 0.95]
+    [targets: head < 5 %, back < 10 %, IoU > 0.95]
+
+[3] Reinitialisation keeps |grad phi| ~ 1 in the narrow band
+    reinit off      : |grad phi| in band = 0.789 +/- 0.310   (target ~ 1.0)
+    reinit every 10 : |grad phi| in band = 0.998 +/- 0.005   (target ~ 1.0)
+
+PASS  (3/3 checks)

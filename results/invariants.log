@@ -1,0 +1,30 @@
+﻿device = cuda
+
+[1] truncation consistency: short run == prefix of long run
+    mask   max |diff| = 0.000e+00   relative = 0.000e+00   [target < 1e-6]
+    plume  max |diff| = 0.000e+00   relative = 0.000e+00   [target < 1e-6]
+    conc   max |diff| = 0.000e+00   relative = 0.000e+00   [target < 1e-6]
+
+[2] Fisher monotonicity in the observation window
+    CRB(U) over windows: 47.7, 674, 15.7, 13.4, 5.16, 4.16, 97.9, 12.1, 63.8, 53.1, 44.9
+    3 violation(s):
+      T 9->18: 47.73 -> 674.5   UNIDENTIFIABLE (CRB > 1)
+      T 54->63: 4.16 -> 97.95   UNIDENTIFIABLE (CRB > 1)
+      T 72->81: 12.08 -> 63.75   UNIDENTIFIABLE (CRB > 1)
+    all violations confined to the unidentifiable regime: True
+
+[3] trilinear interpolation == grid_sample (bilinear, zeros, align_corners=False)
+    max |difference| over 4000 points (incl. outside) = 1.907e-06   [target < 1e-5]
+
+[4] exact (AD) Jacobian vs finite differences
+    AD (exact)   M CRB(U)=38.4497   M+P+C CRB(U)=0.000269023
+    FD eps=0.005  M=0.00678536 (100.0% off AD)   M+P+C=0.000269743 ( 0.3% off AD)
+    FD eps=0.010  M=0.0150263 (100.0% off AD)   M+P+C=0.000271508 ( 0.9% off AD)
+    FD eps=0.020  M=0.0221736 ( 99.9% off AD)   M+P+C=0.000277483 ( 3.1% off AD)
+    FD eps=0.040  M=0.0261976 ( 99.9% off AD)   M+P+C=0.000280959 ( 4.4% off AD)
+    AD has no step size to choose; FD is reported for comparison only.
+
+[5] AD Fisher reproducibility
+    repeated runs: 38.449749, 38.449749   relative spread 0.00e+00   [target < 1e-9]
+
+PASS  (5/5)

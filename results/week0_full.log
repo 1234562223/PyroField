@@ -1,0 +1,146 @@
+﻿device=cuda  truth={'R0': 0.1, 'U': 4.0, 'theta_w': 0.7854, 'lb_k': 0.35, 'w_buoy': 3.0, 'Q': 1.0}
+scenario: 96x96 @ 15.0m, 110 steps x 15.0s = 28 min
+
+==============================================================================
+[0] Jacobian sanity: finite differences vs autograd
+==============================================================================
+    R0       relative disagreement =   0.07 %
+    U        relative disagreement =   3.11 %
+    theta_w  relative disagreement =   0.38 %
+    lb_k     relative disagreement =   0.04 %
+    w_buoy   relative disagreement =   0.03 %
+    Q        relative disagreement =   0.01 %
+    worst = 3.11 %   [target < 15 % on a kinked, limited scheme]
+
+==============================================================================
+[1] Fisher information per sensor subset (Cramer-Rao bounds)
+==============================================================================
+
+  M  (mask only)   (36864 observations, 17.9s)
+    eigenvalues (asc): 1.096e-04, 1.096e-04, 5.341e+02, 1.826e+05, 2.644e+06, 3.748e+06
+    condition number : 3.420e+10
+    weakest direction (all 6 params) : +1.00*w_buoy  +0.00*R0  +0.00*theta_w
+    weakest direction (fire block)   : -0.60*U  +0.60*lb_k  +0.53*R0   [lambda_min = 5.341e+02, cond = 7.02e+03]
+    Cramer-Rao sigma (fractional for R0/U/k_LB/w_b/Q, rad for theta_w):
+      R0           0.023
+      U            0.026
+      theta_w      0.001
+      lb_k         0.026
+      w_buoy      95.528  UNIDENTIFIABLE
+      Q           95.528  UNIDENTIFIABLE
+
+  M+P (mask + plume image)   (43136 observations, 20.9s)
+    eigenvalues (asc): 2.370e+03, 6.810e+04, 2.764e+05, 1.437e+06, 7.747e+06, 3.654e+07
+    condition number : 1.542e+04
+    weakest direction (all 6 params) : +0.99*Q  +0.08*w_buoy  -0.06*R0
+    weakest direction (fire block)   : +0.98*lb_k  +0.19*R0  -0.10*U   [lambda_min = 1.380e+05, cond = 2.43e+02]
+    Cramer-Rao sigma (fractional for R0/U/k_LB/w_b/Q, rad for theta_w):
+      R0           0.002
+      U            0.002
+      theta_w      0.001
+      lb_k         0.003
+      w_buoy       0.003
+      Q            0.020
+
+  M+C (mask + air-quality)   (36876 observations, 21.0s)
+    eigenvalues (asc): 1.110e-04, 3.900e+02, 1.978e+04, 1.853e+05, 2.679e+06, 3.773e+06
+    condition number : 3.400e+10
+    weakest direction (all 6 params) : +1.00*w_buoy  +0.00*R0  +0.00*theta_w
+    weakest direction (fire block)   : +0.61*lb_k  -0.59*U  +0.53*R0   [lambda_min = 5.782e+03, cond = 6.52e+02]
+    Cramer-Rao sigma (fractional for R0/U/k_LB/w_b/Q, rad for theta_w):
+      R0           0.023
+      U            0.026
+      theta_w      0.001
+      lb_k         0.026
+      w_buoy      94.936  UNIDENTIFIABLE
+      Q            0.027
+
+  M+P+C (all three)   (43148 observations, 21.1s)
+    eigenvalues (asc): 1.467e+04, 7.201e+04, 2.775e+05, 1.448e+06, 7.773e+06, 3.657e+07
+    condition number : 2.493e+03
+    weakest direction (all 6 params) : +0.97*Q  +0.15*w_buoy  -0.13*lb_k
+    weakest direction (fire block)   : +0.98*lb_k  +0.19*R0  -0.10*U   [lambda_min = 1.387e+05, cond = 2.42e+02]
+    Cramer-Rao sigma (fractional for R0/U/k_LB/w_b/Q, rad for theta_w):
+      R0           0.001
+      U            0.001
+      theta_w      0.001
+      lb_k         0.003
+      w_buoy       0.003
+      Q            0.008
+
+==============================================================================
+[2] Actual inversion: LM from 3 random starts per subset
+==============================================================================
+
+  M  (mask only)
+    start 0: loss 2.92e+05 -> 3.67e+04 (5 accepted / 8 it, 64s)   R0=94%  U=62%  theta_w=0.0deg  Q=45%
+    start 1: loss 1.50e+05 -> 3.67e+04 (9 accepted / 11 it, 79s)   R0=77%  U=54%  theta_w=0.0deg  Q=36%
+    start 2: loss 1.72e+05 -> 3.67e+04 (5 accepted / 8 it, 64s)   R0=84%  U=58%  theta_w=0.0deg  Q=4%
+    MLE (best of 3, loss 3.673e+04):
+      R0           93.55 %   (restart sd 6.80)
+      U            61.58 %   (restart sd 2.92)
+      theta_w       0.01 deg   (restart sd 0.00)
+      lb_k        159.31 %   (restart sd 16.62)
+      w_buoy       32.57 %   (restart sd 2.80)
+      Q            44.99 %   (restart sd 17.69)
+
+  M+P (mask + plume image)
+    start 0: loss 1.20e+06 -> 6.11e+04 (12 accepted / 14 it, 97s)   R0=17%  U=23%  theta_w=0.2deg  Q=3820%
+    start 1: loss 5.45e+05 -> 4.86e+04 (25 accepted / 25 it, 149s)   R0=9%  U=10%  theta_w=0.3deg  Q=339%
+    start 2: loss 8.32e+05 -> 4.75e+04 (25 accepted / 25 it, 150s)   R0=6%  U=7%  theta_w=0.4deg  Q=295%
+    MLE (best of 3, loss 4.748e+04):
+      R0            6.31 %   (restart sd 4.55)
+      U             6.82 %   (restart sd 6.98)
+      theta_w       0.44 deg   (restart sd 0.12)
+      lb_k          7.73 %   (restart sd 3.47)
+      w_buoy       15.94 %   (restart sd 6.83)
+      Q           294.98 %   (restart sd 1651.48)
+
+  M+C (mask + air-quality)
+    start 0: loss 4.64e+05 -> 3.67e+04 (14 accepted / 14 it, 102s)   R0=104%  U=65%  theta_w=0.0deg  Q=65%
+    start 1: loss 9.96e+04 -> 3.67e+04 (8 accepted / 9 it, 68s)   R0=14%  U=15%  theta_w=0.0deg  Q=13%
+    start 2: loss 1.83e+05 -> 3.67e+04 (9 accepted / 9 it, 25s)   R0=21%  U=28%  theta_w=0.0deg  Q=31%
+    MLE (best of 3, loss 3.674e+04):
+      R0          103.54 %   (restart sd 40.64)
+      U            65.44 %   (restart sd 21.49)
+      theta_w       0.01 deg   (restart sd 0.00)
+      lb_k        188.42 %   (restart sd 79.65)
+      w_buoy        6.65 %   (restart sd 13.77)
+      Q            64.83 %   (restart sd 21.51)
+
+  M+P+C (all three)
+    start 0: loss 4.40e+05 -> 4.31e+04 (25 accepted / 25 it, 53s)   R0=1%  U=1%  theta_w=0.1deg  Q=2%
+    start 1: loss 1.05e+06 -> 8.77e+04 (10 accepted / 12 it, 36s)   R0=12%  U=18%  theta_w=1.3deg  Q=117%
+    start 2: loss 4.27e+05 -> 2.38e+05 (6 accepted / 8 it, 63s)   R0=24%  U=37%  theta_w=1.6deg  Q=298%
+    MLE (best of 3, loss 4.308e+04):
+      R0            1.29 %   (restart sd 9.29)
+      U             1.46 %   (restart sd 14.50)
+      theta_w       0.05 deg   (restart sd 0.65)
+      lb_k          2.06 %   (restart sd 14.86)
+      w_buoy        2.72 %   (restart sd 13.71)
+      Q             1.95 %   (restart sd 121.63)
+
+==============================================================================
+[3] VERDICT
+==============================================================================
+  P1 masks give wind DIRECTION but confound fuel with wind SPEED
+     fire-block CRB: R0=0.023  U=0.026  k_LB=0.026  theta_w=0.0006 rad   -> NO
+     weak direction is the R0/U/k_LB trade-off (load 1.73): -0.60*U  +0.60*lb_k  +0.53*R0   -> OK
+     MLE error on U = 62%   (theta_w only 0.01 deg)   -> OK
+
+  P2 the plume image breaks that confound (smoke is advected by wind,
+     independently of fuel)
+     CRB(U): 0.026 -> 0.0005   (49x)
+     MLE error on U: 62% -> 6.8%  (9.0x)   -> OK
+
+  P3 one cheap air-quality point adds the absolute scale (Q / U term)
+     CRB(Q): 0.0204 -> 0.0081   (2.5x)
+     Fisher condition number: 1.54e+04 -> 2.49e+03   (6.2x better)
+     MLE error on Q: 295% -> 1.9%   -> OK
+
+  (context) mask-only CRB on smoke terms: Q=9.6e+01  w_buoy=9.6e+01  -- masks carry no information about either
+
+  *** NO-GO ***  revisit the formulation before scaling up
+
+  total wall time: 17.3 min
+  wrote C:\Users\Administrator\新建文件夹\results\week0.json

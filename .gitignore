@@ -1,0 +1,16 @@
+# Downloaded and generated data, 48 GB of it. Everything here is reproducible:
+#   scripts/fetch_perimeters.py   NIFC WFIGS final perimeters
+#   scripts/fetch_wind.py         ERA5 via the Open-Meteo archive API
+#   scripts/fetch_wsts.py         WildfireSpreadTS, selectively, from Zenodo
+#   scripts/gen_dataset.py        the simulated fusion splits
+#   scripts/gen_wsts_pairs.py     the next-day spread pairs
+data/
+
+# Python bytecode
+__pycache__/
+*.py[cod]
+
+# Scratch logs from debugging runs, as opposed to the logs each experiment writes
+results/_*.log
+results/probe*.log
+results/probe*.err

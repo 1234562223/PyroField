@@ -1,0 +1,26 @@
+﻿900 perimeters
+  900 have a usable date window and centroid
+
+  50/900  kept 50  failed 0  (9s, eta 155s)
+  100/900  kept 100  failed 0  (19s, eta 149s)
+  150/900  kept 150  failed 0  (28s, eta 139s)
+  200/900  kept 200  failed 0  (37s, eta 130s)
+  250/900  kept 250  failed 0  (46s, eta 119s)
+  300/900  kept 300  failed 0  (54s, eta 109s)
+  350/900  kept 350  failed 0  (64s, eta 100s)
+  400/900  kept 400  failed 0  (74s, eta 92s)
+  450/900  kept 450  failed 0  (83s, eta 83s)
+  500/900  kept 500  failed 0  (92s, eta 73s)
+  550/900  kept 550  failed 0  (101s, eta 64s)
+  600/900  kept 600  failed 0  (109s, eta 55s)
+  650/900  kept 650  failed 0  (118s, eta 45s)
+  700/900  kept 700  failed 0  (127s, eta 36s)
+  750/900  kept 750  failed 0  (135s, eta 27s)
+  800/900  kept 800  failed 0  (144s, eta 18s)
+  850/900  kept 850  failed 0  (153s, eta 9s)
+  900/900  kept 900  failed 0  (162s, eta 0s)
+
+  kept 900, failed 0
+  wrote C:\Users\Administrator\新建文件夹\data\fire_wind.json  (0.4 MB)
+  10 m wind (mean of daily maxima): median 4.53 m/s, p10 3.28, p90 6.75
+  direction coherence over the window: median 0.54 (1 = steady, 0 = boxing the compass)

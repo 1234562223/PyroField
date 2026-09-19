@@ -1,0 +1,38 @@
+﻿==============================================================================
+[1] where the burn scar points, as the hill turns
+==============================================================================
+    wind at 45 deg, wind factor phi_w = 2.122
+
+     aspect - wind |    phi_s=0.5    phi_s=1.0    phi_s=2.0    phi_s=3.0
+              0 deg |        0.0          0.0          0.0          0.0   
+             30 deg |        5.6          9.5         14.5         17.6   
+             60 deg |       10.3         18.3         29.0         35.7   
+             90 deg |       13.3         25.2         43.3         54.7   
+            120 deg |       13.0         28.1         57.1         76.5   
+            150 deg |        8.4         21.7         68.7        107.6 * 
+            180 deg |        0.0          0.0          0.0        180.0 * 
+
+    * = slope factor exceeds the wind factor (2.12) and the scar has
+      flipped: a mask there reports a wind blowing the other way.
+    worst direction error anywhere in this sweep: 180.0 deg
+
+==============================================================================
+[2] identifiability vs aspect (mask only, slope factor 1.0 free)
+==============================================================================
+     aspect - wind   scar err  CRB(theta_w)     CRB(U)    CRB(R0)      gap
+              0 deg       0.0      0.0004003   0.006047   0.006413       19
+             30 deg       9.5       0.003502    0.01159   0.007284       39
+             60 deg      18.3        0.01561    0.01678    0.01011       76
+             90 deg      25.2        0.03432    0.03543    0.03227     1616
+            120 deg      28.1        0.06028    0.05579    0.05703     4064
+            150 deg      21.7        0.03797    0.06135    0.07062     3142
+            180 deg       0.0      0.0004047    0.09022     0.1291     7055
+
+    aligned (0 deg):  scar points downwind, direction error 0.0 deg -- but CRB(U) = 0.00605
+      the head rate now confounds three quantities instead of two, so the
+      speed is no better off for the direction being right.
+    across  (90 deg): direction error 25.2 deg, CRB(theta_w) = 0.0343 rad (1.97 deg)
+      direction is 86x less determined across the wind than along it.
+
+wrote C:\Users\Administrator\新建文件夹\figures\fig_terrain_aspect.png
+wrote C:\Users\Administrator\新建文件夹\results\terrain_aspect.json

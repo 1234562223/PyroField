@@ -1,0 +1,65 @@
+﻿206 fire events on disk
+  25/206 fires, 140 backtracks (20s)
+  50/206 fires, 382 backtracks (37s)
+  75/206 fires, 590 backtracks (54s)
+  100/206 fires, 719 backtracks (70s)
+  125/206 fires, 996 backtracks (93s)
+  150/206 fires, 1207 backtracks (111s)
+  175/206 fires, 1530 backtracks (132s)
+  200/206 fires, 2028 backtracks (155s)
+
+2135 backtracks from 121 fires
+
+==============================================================================
+[1] how big is the ignition feasible set, and does it contain the truth?
+==============================================================================
+
+  Coverage is 100 % by construction for the three centred regimes: each
+  interval is built around the rate the true ignition implies, so the truth
+  is inside it by definition. The informative column is the area. Only the
+  history regime, whose interval comes from the fire's own growth and not
+  from the answer, has a coverage number that means anything.
+
+           rate known to   median area   as % of burn   covers truth
+        oracle (+/-10 %)       14.3 km2           34 %           100 %
+      covariates (x1.96)       47.1 km2          100 %           100 %
+      prior only (x2.01)       47.1 km2          100 %           100 %
+         history (x3.21)       38.1 km2           94 %            85 %
+
+  Knowing the rate to +/-10 % instead of the factor of 1.96 an investigator
+  actually has shrinks the feasible ignition area by 3x, from 47 to 14.3 km2.
+  And +/-10 % on the rate is exactly what section 1 says a burn scar cannot
+  give you, because the rate it hands over is a product of fuel and wind.
+
+  The covariates are worth almost nothing: 47 km2 against 47 km2 for knowing nothing
+  about the fire at all -- which is section 14.3's R^2 = 0.084, in units an
+  investigator can act on.
+
+==============================================================================
+[2] does it shrink as the fire is watched for longer? (plan item P5)
+==============================================================================
+
+    The absolute area is reported beside the fraction of the burn it covers,
+    because a fire that has run longer is bigger and its feasible set would
+    grow on that account alone. The fraction is what controls for it.
+
+    days burning  backtracks       burn                oracle           covariates           prior only
+           3 - 5         333      25km2          7.2 ( 32%)        25.0 (100%)        25.0 (100%)
+           6 - 9         447      30km2          8.9 ( 33%)        29.7 (100%)        29.7 (100%)
+         10 - 15         508      40km2         12.2 ( 35%)        39.8 (100%)        39.8 (100%)
+           >= 16         847     106km2         40.4 ( 36%)       106.3 (100%)       106.3 (100%)
+
+  The feasible set is a *region*, never a point. Its absolute area grows 5.6x
+  from the shortest to the longest window, but so does the burn (4.2x), and as a
+  fraction of the burn it goes 32 % -> 36 % under the oracle and stays at 100 % under the
+  covariates. So watching the fire for longer does not localise where it
+  started; the plan's P5 predicted a region rather than a point, and
+  predicted the wrong direction for how that region behaves.
+
+  The operational reading: backtrack from the *earliest* perimeter you
+  have, not the latest. The smallest absolute feasible set here comes from
+  the 3-5 day window, at 7.2 km2 under an oracle rate and 25.0 km2 with the
+  rate an investigator can actually obtain.
+
+wrote C:\Users\Administrator\新建文件夹\results\retrodiction.json
+wrote C:\Users\Administrator\新建文件夹\figures\fig_retrodiction.png

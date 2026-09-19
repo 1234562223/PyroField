@@ -1,0 +1,23 @@
+﻿reading profile_U.json
+====================================================================================
+Profile-likelihood uncertainty on U, and what each Fisher estimator claimed
+====================================================================================
+  set            profile 1-sigma     AD Fisher     FD Fisher   AD error   FD error
+  M         >          73.33 %        3845 %       2.217 %      52.4x       0.0x
+  M+P+C              0.09547 %       0.075 %     0.07576 %       0.8x       0.8x
+
+  The 'error' columns are each Fisher estimate divided by the likelihood answer.
+  A Cramér–Rao value is a *lower* bound, so a ratio below 1 is mathematically
+  legitimate -- but a ratio far below 1 means the bound is loose to the point of
+  being misleading if it is read, as it usually is, as the achievable accuracy.
+  A ratio above 1 is worse than loose: it is not a valid bound at all, and
+  indicates the computed Fisher information is too small.
+    - M: the AD bound EXCEEDS the measured uncertainty (52x), so it is not a valid bound. The minmod limiter
+      zeroes derivative paths, making the computed information too small.
+    - M: the FD bound is valid but loose by 33x -- the degeneracy is curved, and a Fisher
+      matrix only ever sees local curvature.
+
+  M vs M+P+C on U: at least 768x better with the full sensor set
+
+wrote C:\Users\Administrator\新建文件夹\figures\fig_profile_U.png
+wrote C:\Users\Administrator\新建文件夹\results\profile_summary_U.json

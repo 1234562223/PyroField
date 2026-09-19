@@ -1,0 +1,41 @@
+﻿
+[1] camera azimuth, at 900 m standoff and 60 m mast
+    ('vs masks' is against the profile-likelihood mask bound of 73 %, so it is a lower bound on the gain)
+     azimuth  rel. to wind    CRB(U) M+P    vs masks
+         0.0         -45.0      0.07683%        954x
+        22.5         -22.5      0.09386%        781x
+        45.0          -0.0      0.10365%        707x
+        67.5          22.5      0.09387%        781x
+        90.0          45.0      0.07684%        954x
+       112.5          67.5      0.08113%        904x
+       135.0          90.0      0.08141%        901x
+       157.5         112.5      0.09524%        770x
+       180.0         135.0      0.10832%        677x
+       202.5         157.5      0.10466%        701x
+       225.0         180.0      0.09856%        744x
+       247.5        -157.5      0.10466%        701x
+       270.0        -135.0      0.10832%        677x
+       292.5        -112.5      0.09524%        770x
+       315.0         -90.0      0.08141%        901x
+       337.5         -67.5      0.08113%        904x
+
+    best  azimuth 0 deg (-45 from wind): 0.07683 %
+    worst azimuth 180 deg (+135 from wind): 0.10832 %
+    spread across azimuth: 1.41x
+    worst-case gain over masks across all azimuths: 677x
+
+[2] standoff distance (across the wind, 60 m mast)
+        400 m   CRB(U) =   0.11124 %       659x better than masks
+        700 m   CRB(U) =   0.08358 %       877x better than masks
+       1000 m   CRB(U) =   0.08735 %       839x better than masks
+       1500 m   CRB(U) =   0.12442 %       589x better than masks
+       2200 m   CRB(U) =   0.17429 %       421x better than masks
+
+[3] mast height (across the wind, 900 m standoff)
+         10 m   CRB(U) =   0.08324 %       881x better than masks
+         30 m   CRB(U) =   0.08221 %       892x better than masks
+         60 m   CRB(U) =   0.08141 %       901x better than masks
+        120 m   CRB(U) =   0.08045 %       912x better than masks
+        250 m   CRB(U) =   0.08375 %       876x better than masks
+
+wrote C:\Users\Administrator\新建文件夹\figures\fig_camera_geometry.png

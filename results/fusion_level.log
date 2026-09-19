@@ -1,0 +1,85 @@
+﻿==============================================================================
+[1] feature-level fusion: one network, trained twice
+==============================================================================
+
+  CNN mask only
+      epoch  20/200  val 0.45854  best 0.44373  (22s)
+      epoch  40/200  val 0.44417  best 0.42842  (45s)
+      epoch  60/200  val 0.43384  best 0.42403  (67s)
+      epoch  80/200  val 0.43357  best 0.42396  (89s)
+      epoch 100/200  val 0.45501  best 0.42396  (111s)
+      epoch 120/200  val 0.45028  best 0.42396  (133s)
+      epoch 140/200  val 0.47889  best 0.42396  (155s)
+      epoch 160/200  val 0.49867  best 0.42396  (177s)
+      epoch 180/200  val 0.51712  best 0.42396  (199s)
+      epoch 200/200  val 0.52294  best 0.42396  (222s)
+    parameters: 971,655   best val 0.42396
+
+  CNN mask + plume
+      epoch  20/200  val 0.18044  best 0.15759  (22s)
+      epoch  40/200  val 0.22851  best 0.10700  (44s)
+      epoch  60/200  val 0.10275  best 0.08075  (66s)
+      epoch  80/200  val 0.07071  best 0.05280  (89s)
+      epoch 100/200  val 0.06761  best 0.03831  (111s)
+      epoch 120/200  val 0.03293  best 0.02906  (133s)
+      epoch 140/200  val 0.02524  best 0.02438  (155s)
+      epoch 160/200  val 0.02262  best 0.02220  (177s)
+      epoch 180/200  val 0.02181  best 0.02160  (199s)
+      epoch 200/200  val 0.02166  best 0.02158  (221s)
+    parameters: 971,655   best val 0.02158
+
+==============================================================================
+[2] what each arm gets, in and out of distribution
+==============================================================================
+
+  arm                    split        U err   R0 err   theta_w   U pred   U true
+  prior (train median)   test_id      21.8%    22.5%    90.88d     3.50     3.50
+  prior (train median)   test_ood     48.4%    22.0%    89.07d     3.50     6.79
+  CNN mask only          test_id      10.3%     7.7%     2.46d     3.33     3.50
+  CNN mask only          test_ood     30.6%    21.3%     3.37d     4.80     6.79
+  CNN mask + plume       test_id       1.8%     1.7%     0.63d     3.48     3.50
+  CNN mask + plume       test_ood     16.5%    13.9%     1.53d     5.61     6.79
+
+==============================================================================
+[3] state-level fusion: inversion through the physics (25 cases)
+==============================================================================
+
+  state mask + plume, test_id
+      test_id M+P  5/25  (254s)
+      test_id M+P  10/25  (518s)
+      test_id M+P  15/25  (769s)
+      test_id M+P  20/25  (1012s)
+      test_id M+P  25/25  (1282s)
+    U err 0.7%   R0 err 0.4%   theta_w 0.02 deg
+
+  state mask + plume, test_ood
+      test_ood M+P  5/25  (243s)
+      test_ood M+P  10/25  (533s)
+      test_ood M+P  15/25  (807s)
+      test_ood M+P  20/25  (1057s)
+      test_ood M+P  25/25  (1344s)
+    U err 0.8%   R0 err 0.8%   theta_w 0.04 deg
+
+  state mask only, test_id
+      test_id M    5/12  (234s)
+      test_id M    10/12  (403s)
+    U err 26.8%   R0 err 23.2%   theta_w 0.03 deg
+
+  state mask only, test_ood
+      test_ood M    5/12  (210s)
+      test_ood M    10/12  (409s)
+    U err 19.2%   R0 err 21.3%   theta_w 0.03 deg
+
+==============================================================================
+[4] the 2x2, on wind speed
+==============================================================================
+                            in-distribution    out-of-distribution   degradation
+  prior (train median)                21.8%                  48.4%          2.2x
+  CNN mask only                       10.3%                  30.6%          3.0x
+  CNN mask + plume                     1.8%                  16.5%          9.1x
+  state mask only                     26.8%                  19.2%          0.7x
+  state mask + plume                   0.7%                   0.8%          1.1x
+
+wrote C:\Users\Administrator\新建文件夹\results\fusion_level.json
+wrote C:\Users\Administrator\新建文件夹\results\fusion_preds.npz
+wrote C:\Users\Administrator\新建文件夹\figures\fig_fusion_level.png

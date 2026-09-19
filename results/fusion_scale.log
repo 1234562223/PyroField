@@ -1,0 +1,44 @@
+﻿==============================================================================
+[1] the same arms, independent fires, 60 per split
+==============================================================================
+
+  state mask + plume, test_id  (60 cases, seed 4242)
+      test_id M+P 10/60  (900s, eta 75 min)
+      test_id M+P 20/60  (1746s, eta 58 min)
+      test_id M+P 30/60  (2631s, eta 44 min)
+      test_id M+P 40/60  (3458s, eta 29 min)
+      test_id M+P 50/60  (4297s, eta 14 min)
+      test_id M+P 60/60  (5098s, eta 0 min)
+    median 0.3 %  (95 % CI 0.3-0.6),  failures 12 % (CI 5-20)
+
+  state mask + plume, test_ood  (60 cases, seed 4242)
+      test_ood M+P 10/60  (882s, eta 74 min)
+      test_ood M+P 20/60  (1758s, eta 59 min)
+      test_ood M+P 30/60  (2642s, eta 44 min)
+      test_ood M+P 40/60  (3269s, eta 27 min)
+      test_ood M+P 50/60  (3832s, eta 13 min)
+      test_ood M+P 60/60  (4432s, eta 0 min)
+    median 5.0 %  (95 % CI 1.6-13.2),  failures 50 % (CI 37-63)
+
+  state mask only, test_id  (30 cases, seed 4242)
+      test_id M   10/30  (460s, eta 15 min)
+      test_id M   20/30  (865s, eta 7 min)
+      test_id M   30/30  (1252s, eta 0 min)
+    median 26.9 %  (95 % CI 15.1-50.7),  failures 83 % (CI 70-97)
+
+==============================================================================
+[2] against section 12's numbers, on different fires
+==============================================================================
+
+  arm                              section 12 (n=25/12)                   this run               failures
+  state mask + plume|test_id                       0.7 %      0.3 % [0.3, 0.6]     12 % [5, 20]
+  state mask + plume|test_ood                      0.8 %      5.0 % [1.6, 13.2]     50 % [37, 63]
+  state mask only|test_id                         26.8 %     26.9 % [15.1, 50.7]     83 % [70, 97]
+
+  Section 12's point estimates fall inside this run's intervals in 1 of 3 arms.
+
+  The headline separation is unchanged and now carries intervals: 5.0 % [1.6, 13.2] with the plume
+  out of distribution, against 26.9 % [15.1, 50.7] with masks alone in distribution.
+
+wrote C:\Users\Administrator\新建文件夹\results\fusion_scale.json
+wrote C:\Users\Administrator\新建文件夹\figures\fig_fusion_scale.png

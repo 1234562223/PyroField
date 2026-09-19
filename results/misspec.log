@@ -1,0 +1,33 @@
+﻿data generated with b = 1.3; 110592 mask observations
+noise floor chi2 = N = 110592
+
+   b_fit   set             U fitted      err   R0 err   chi2 / N
+    1.10     M      3.311 (spread  0.68)    17.2%    35.4%     1.0042
+    1.10   M+P      3.999 (spread  0.00)     0.0%    19.7%     1.0042
+    1.20     M      3.467 (spread  2.30)    13.3%    22.2%     1.0042
+    1.20   M+P      3.999 (spread  0.00)     0.0%     9.7%     1.0042
+    1.30     M      4.615 (spread  1.81)    15.4%    12.2%     1.0042
+    1.30   M+P      3.999 (spread  0.00)     0.0%     0.0%     1.0042
+    1.40     M      2.173 (spread  2.39)    45.7%    53.3%     1.0042
+    1.40   M+P      3.999 (spread  0.00)     0.0%     9.1%     1.0042
+    1.50     M      4.284 (spread  7.38)     7.1%    23.9%     1.0042
+    1.50   M+P      3.999 (spread  0.00)     0.0%    17.8%     1.0042
+   (4429s)
+
+==============================================================================
+VERDICT
+==============================================================================
+  the wrong fire model still reproduces the observed past: chi2/N in [1.0042, 1.0042]  -> True
+    (a mis-specified spread model is invisible in the masks, because the
+     degeneracy simply absorbs it into the fuel estimate)
+
+  wind-speed error, masks only : 7% to 46%
+  wind-speed error, mask+plume : 0.02% to 0.03%
+  median advantage of the plume under mis-specification: 787x
+
+  the plume's wind estimate degrades from 0.02% at the
+  correct exponent to 0.03% at the worst wrong one (2x)
+  the advantage survives a 15% error in the spread model: True
+
+wrote C:\Users\Administrator\新建文件夹\figures\fig_misspecification.png
+wrote C:\Users\Administrator\新建文件夹\results\misspecification.json

@@ -1,0 +1,49 @@
+﻿joined 895 of 895 perimeters to ERA5 wind
+  440 have a coherent wind direction over the window (coherence >= 0.55)
+
+==============================================================================
+[1] model-free: bin by observed shape, look at the real wind in each bin
+==============================================================================
+         L/B bin     n  wind p25   median      p75   p10-p90 spread
+      1.0-1.4     104      3.77     4.41     5.51              76 %
+      1.4-1.8     120      3.95     4.64     5.59              72 %
+      1.8-2.3      95      3.69     4.75     5.56              69 %
+      2.3-3.0      69      3.62     4.46     5.44              82 %
+      3.0-4.5      44      3.99     5.44     6.36              75 %
+
+    correlation of log L/B with log wind: r = 0.151  (r^2 = 0.023)
+    median wind moves from 4.41 to 5.44 m/s across the whole range of shapes,
+    while the wind *within* a single shape bin spans 75 % (p10-p90).
+    Shape barely moves the answer, and does not narrow it.
+
+==============================================================================
+[2] against Anderson's relation, with the wind adjustment factor fitted
+==============================================================================
+    best-fit wind adjustment factor: 0.244  (physically plausible range 0.05-0.6)
+    implied median midflame wind: 1.14 m/s
+    correlation of predicted with observed L/B: r = 0.387
+    residual scatter on ln L/B: sigma = 0.379  (46 % relative)
+
+    Alexander (1985) reported r = 0.865 on experimental fires and
+    well-documented wildfires in coniferous forest. On this operational
+    sample the same comparison gives r = 0.387.
+
+==============================================================================
+[3] the number section 2 was missing
+==============================================================================
+    measured relative scatter in the shape relation: 46 %
+    (the bracket carried previously was 15-35 %, inferred from r)
+
+      U (m/s)   elasticity   implied sigma(U)
+          1.0        0.478                96 %   <- misses the 10 % tolerance
+          1.5        0.843                55 %   <- misses the 10 % tolerance
+          2.0        1.159                40 %   <- misses the 10 % tolerance
+          2.5        1.468                31 %   <- misses the 10 % tolerance
+          3.0        1.769                26 %   <- misses the 10 % tolerance
+          3.5        2.062                22 %   <- misses the 10 % tolerance
+
+    Every wind below the FARSITE cap misses the tolerance by this measure,
+    and this is measured rather than inferred.
+
+wrote C:\Users\Administrator\新建文件夹\results\real_shape_vs_wind.json
+wrote C:\Users\Administrator\新建文件夹\figures\fig_real_shape_vs_wind.png

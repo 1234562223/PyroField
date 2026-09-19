@@ -1,0 +1,56 @@
+﻿==============================================================================
+[1] closed-form null direction vs the weakest Fisher eigenvector
+==============================================================================
+  U= 2.0  (dt=15.00s, 110 steps, CFL=0.19)
+          analytic v = (-0.3915, +0.6507, -0.6507)
+          measured   = (-0.3919, +0.6494, -0.6517)   |cos| = 0.999999
+          eigenvalues: 1.044e+01, 1.569e+05, 2.417e+06   ratio lam2/lam1 = 15022.8
+  U= 3.0  (dt=15.00s, 110 steps, CFL=0.25)
+          analytic v = (-0.4789, +0.6207, -0.6207)
+          measured   = (-0.4794, +0.6184, -0.6227)   |cos| = 0.999995
+          eigenvalues: 9.240e+01, 2.569e+05, 4.666e+06   ratio lam2/lam1 = 2780.4
+  U= 4.0  (dt=15.00s, 110 steps, CFL=0.31)
+          analytic v = (-0.5299, +0.5997, -0.5997)
+          measured   = (-0.5301, +0.5991, -0.6000)   |cos| = 1.000000
+          eigenvalues: 7.312e+02, 3.979e+05, 8.300e+06   ratio lam2/lam1 = 544.2
+  U= 6.0  (dt=11.43s, 144 steps, CFL=0.35)
+          analytic v = (-0.5839, +0.5741, -0.5741)
+          measured   = (-0.5851, +0.5767, -0.5701)   |cos| = 0.999988
+          eigenvalues: 9.877e+03, 8.499e+05, 2.107e+07   ratio lam2/lam1 = 86.0
+  U= 9.0  (dt= 7.41s, 223 steps, CFL=0.35)
+          analytic v = (-0.6197, +0.5550, -0.5550)
+          measured   = (-0.6216, +0.5595, -0.5482)   |cos| = 0.999965
+          eigenvalues: 3.840e+04, 1.728e+06, 5.217e+07   ratio lam2/lam1 = 45.0
+
+  worst |cos| over the envelope = 0.999965   [target > 0.99]
+
+==============================================================================
+[2] walking along the null CURVE: the mask must not move
+==============================================================================
+  truth: R_head = 0.31220 m/s, LB = 2.4000;  noise floor chi^2 = N = 110592
+    U change    curve dchi2   tangent dchi2   control dchi2
+          5%           0.52             1.8          8214.4
+         10%           0.13            14.8         31727.8
+         20%           0.52           179.1        112734.6
+         30%           0.20           790.8        220364.1
+
+  a 30% wind error costs Delta chi^2 = 0.20 when compensated along
+  the exact curve, against 220364 when not compensated at all
+  -- a factor of 1124222.
+  Following the tangent instead of the curve costs 791: that gap is pure curvature, and it is why a
+  linearised (Fisher) analysis cannot see this degeneracy.
+  mask stays within Delta chi^2 < 10 along the null curve: True
+
+==============================================================================
+[3] consequence for the Fisher analysis
+==============================================================================
+  smallest fire-block eigenvalue reported numerically: 7.3120e+02
+  exact value implied by the rank argument:            0
+  The nonzero number is discretisation error in the finite-difference
+  Jacobian. Any Cramer-Rao bound derived from it -- and therefore every
+  mask-only row of the sweep table -- is an artefact of that error, which
+  is why the profile likelihood and the closed-form argument agree with
+  each other and not with it.
+
+PASS
+wrote C:\Users\Administrator\新建文件夹\results\null_direction.json

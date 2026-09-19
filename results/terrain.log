@@ -1,0 +1,61 @@
+﻿==============================================================================
+[0] the geometry
+==============================================================================
+    wind   :   45.0 deg, factor phi_w = 2.122
+    slope  :  135.0 deg, factor phi_s = 1.000
+    the burn scar points along   70.2 deg
+    -> reading the wind off the mask is wrong by 25.2 deg
+
+==============================================================================
+[1] the null space grows from one dimension to two
+==============================================================================
+
+  masks only
+    eigenvalues: 2.222e+02, 2.624e+02, 4.241e+05, 7.393e+06, 9.153e+06
+    largest spectral gap after index 2 (factor 1616) -> 2 weak direction(s)
+      dir 1 (lambda = 2.222e+02): +0.76*slope_phi  -0.51*theta_w  -0.24*U
+      dir 2 (lambda = 2.624e+02): +0.51*slope_phi  -0.51*lb_k  +0.51*U
+    CRB: R0=0.03227  U=0.03543  theta_w=0.03432  lb_k=0.0355  slope_phi=0.05982
+
+  mask + plume
+    eigenvalues: 8.152e+04, 3.133e+05, 6.488e+06, 1.196e+07, 4.405e+07
+    largest spectral gap after index 2 (factor 21) -> 2 weak direction(s)
+      dir 1 (lambda = 8.152e+04): +0.89*slope_phi  -0.28*theta_w  -0.25*lb_k
+      dir 2 (lambda = 3.133e+05): +0.96*lb_k  +0.26*slope_phi  -0.10*theta_w
+    CRB: R0=0.0007882  U=0.0006212  theta_w=0.001027  lb_k=0.001925  slope_phi=0.003155
+
+==============================================================================
+[2] what a flat-ground fit reports when the data came off a slope
+==============================================================================
+    (this is what every mask-space method implicitly does)
+    M   : wind direction reported   70.3 deg (truth 45.0) -> error 25.26 deg     chi2/N = 1.0078
+    M+P : wind direction reported   65.9 deg (truth 45.0) -> error 20.93 deg     chi2/N = 2.2216
+
+    the mask-only answer sits within 0.0 deg of the combined
+    wind+slope direction (70.2 deg): the mask reported the
+    vector sum and called it the wind, exactly as the algebra says it must.
+
+==============================================================================
+[2b] the right procedure: let the slope factor float too
+==============================================================================
+    M   : wind   50.5 deg (err  5.54, restart spread 20.08 deg)   phi_s 0.844 (truth 1.0, err 15.6%)   chi2/N 1.0078
+    M+P : wind   45.0 deg (err  0.04, restart spread  0.00 deg)   phi_s 1.003 (truth 1.0, err  0.3%)   chi2/N 1.0072
+
+    Letting the slope float removes the bias, but for masks it only converts
+    a confident wrong answer into an unconstrained one: the restart spread is
+    20.1 deg against 0.00 deg with the plume.
+
+==============================================================================
+[3] how the error grows with the slope
+==============================================================================
+      phi_s  slope deg   scar dir  naive wind err
+       0.00        0.0       45.0            0.0 deg
+       0.25       12.3       51.7            6.7 deg
+       0.50       17.1       58.3           13.3 deg
+       1.00       23.5       70.2           25.2 deg
+       2.00       31.6       88.3           43.3 deg
+       3.00       37.0       99.7           54.7 deg
+       4.00       41.0      107.1           62.1 deg
+
+wrote C:\Users\Administrator\新建文件夹\figures\fig_terrain.png
+wrote C:\Users\Administrator\新建文件夹\results\terrain.json
